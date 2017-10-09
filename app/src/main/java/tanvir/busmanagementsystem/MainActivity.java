@@ -1,6 +1,8 @@
 package tanvir.busmanagementsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.sdsmdg.tastytoast.TastyToast;
@@ -43,6 +46,27 @@ public class MainActivity extends AppCompatActivity {
 
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(R.id.HOmeId).setChecked(true);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.login:
+                        Intent myIntent = new Intent(MainActivity.this, SignIn.class);
+                        item.setChecked(true);
+                        drawerLayout.closeDrawers();
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        MainActivity.this.startActivity(myIntent);
+                        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                        finish();
+                        break;
+
+                }
+                return  true;
+
+            }
+        });
     }
 
     @Override

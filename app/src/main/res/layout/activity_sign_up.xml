@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BCAAA4"
+    tools:context="tanvir.busmanagementsystem.SignUp">
+
+    <TextView
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="120dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:id="@+id/adminInSignUpPageTV"
+        android:layout_width="wrap_content"
+        android:text="Admin"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:textColor="#FFFFFF"
+        android:layout_toRightOf="@id/adminInSignUpPageTV"
+        android:layout_alignBottom="@id/adminInSignUpPageTV"
+        android:textSize="27sp"
+        android:id="@+id/signUpTv"
+        android:layout_width="wrap_content"
+        android:text="Sign up ."
+        android:textStyle="bold"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/adminInSignUpPageTV"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/userNameInSignUpPage"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/passwordInSignUpActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/userNameInSignUpPage"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/passwordLayoutInSignUpPage"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+
+            android:id="@+id/userNameInSignUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/passwordLayoutInSignUpPage"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/gmailLayoutInSignUpPage"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+
+            android:id="@+id/emailInSignUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/signUpBTN"
+        tools:mockup_opacity="@android:integer/config_longAnimTime"
+        android:text="Create Account"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorAccent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="290dp"
+        android:layout_below="@id/gmailLayoutInSignUpPage"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/signUpBTN"
+        android:text="Already a member ? "
+        android:id="@+id/member"
+        android:layout_marginLeft="90dp"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:clickable="true"
+        android:onClick="startSignInPage"
+        android:layout_toRightOf="@id/member"
+        android:layout_alignBottom="@id/member"
+        android:layout_below="@id/signUpBTN"
+        android:text=" Login "
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+</RelativeLayout>

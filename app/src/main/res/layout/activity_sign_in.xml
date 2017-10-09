@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BCAAA4"
+    tools:context="tanvir.busmanagementsystem.SignIn">
+
+    <TextView
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="120dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:id="@+id/adminTV"
+        android:layout_width="wrap_content"
+        android:text="Admin"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:textColor="#FFFFFF"
+        android:layout_toRightOf="@id/adminTV"
+        android:layout_alignBottom="@id/adminTV"
+        android:textSize="27sp"
+        android:id="@+id/loginTV"
+        android:layout_width="wrap_content"
+        android:text="Log in ."
+        android:textStyle="bold"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/adminTV"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/input_layout_username"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/input_layout_username"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/input_layout_password"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+
+            android:id="@+id/input_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:onClick="activity"
+        android:id="@+id/loginBTN"
+        tools:mockup_opacity="@android:integer/config_longAnimTime"
+        android:text="Login"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorAccent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="290dp"
+        android:layout_below="@id/input_layout_password"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/loginBTN"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:text="Forgot Password ? "
+        android:textStyle="bold"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginBottom="8dp"
+        android:id="@+id/dontHaveAccountTV"
+        android:text="I dont have an account yet ."
+        android:textColor="@color/white"
+        android:layout_marginLeft="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:clickable="true"
+        android:onClick="startSignUpPage"
+        android:layout_marginBottom="8dp"
+        android:layout_toRightOf="@id/dontHaveAccountTV"
+        android:text="create one "
+        android:layout_marginLeft="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</RelativeLayout>
