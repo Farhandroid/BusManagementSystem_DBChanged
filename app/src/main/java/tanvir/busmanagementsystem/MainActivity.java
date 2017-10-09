@@ -82,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickedOnFrom(View view) {
 
-        TastyToast.makeText(getApplicationContext(), "Clicked On from !", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+        TastyToast.makeText(getApplicationContext(), "Clicked On from !", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
     }
 
     public void clickedOnTo(View view) {
 
-        TastyToast.makeText(getApplicationContext(), "Clicked On To !", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+        TastyToast.makeText(getApplicationContext(), "Clicked On To !", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
     }
 }

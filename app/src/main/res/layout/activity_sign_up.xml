@@ -40,7 +40,7 @@
         >
 
         <EditText
-            android:id="@+id/passwordInSignUpActivity"
+            android:id="@+id/userNameInSignUpActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username" />
@@ -59,10 +59,11 @@
 
         <EditText
 
-            android:id="@+id/userNameInSignUP"
+            android:id="@+id/passwordInSignUP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:hint="Password"
+            android:inputType="textPassword"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -87,6 +88,7 @@
 
     <Button
         android:id="@+id/signUpBTN"
+        android:onClick="createAccount"
         tools:mockup_opacity="@android:integer/config_longAnimTime"
         android:text="Create Account"
         android:layout_marginTop="5dp"
