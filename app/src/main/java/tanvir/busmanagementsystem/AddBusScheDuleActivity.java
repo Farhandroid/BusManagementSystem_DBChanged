@@ -3,6 +3,7 @@ package tanvir.busmanagementsystem;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 import tanvir.busmanagementsystem.Database.DatabaseHelper;
 import tanvir.busmanagementsystem.Database.TableAttribute;
@@ -24,7 +26,7 @@ import tanvir.busmanagementsystem.MOdelClass.BusScheduleInfoMC;
 public class AddBusScheDuleActivity extends AppCompatActivity {
 
     EditText departureDateET , departureTimeET , arrivalDateET , arrivalTimeET ;
-    AutoCompleteTextView busIdET , busNameET;
+    AutoCompleteTextView busIdET , busNameET ,departureLocationET ,arrivalLocationET;
     DatabaseHelper databaseHelper;
 
     @Override
@@ -40,6 +42,8 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         arrivalTimeET= (EditText) findViewById(R.id.arrivalTimeET);
         busNameET= (AutoCompleteTextView) findViewById(R.id.busNameETSQ);
         busIdET= (AutoCompleteTextView) findViewById(R.id.busIdETSQ);
+        departureLocationET = (AutoCompleteTextView) findViewById(R.id.departureLocationSC);
+       arrivalLocationET = (AutoCompleteTextView) findViewById(R.id.arrivalLocationSC);
 
         setAutoComplete();
     }
@@ -137,6 +141,16 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,busIdArrayList);
         busIdET.setAdapter(adapter2);
 
+        ArrayList<String> countryNameArrayList = new ArrayList<String>();
+        Resources res = getResources();
+        Collections.addAll(countryNameArrayList, res.getStringArray(R.array.country_array));
+
+
+
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countryNameArrayList);
+        departureLocationET.setAdapter(adapter3);
+        arrivalLocationET.setAdapter(adapter3);
+
 
     }
 
@@ -148,8 +162,10 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         String departureTime = departureTimeET.getText().toString();
         String arrivalDate = arrivalDateET.getText().toString();
         String arrivalTime = arrivalTimeET.getText().toString();
+        String departureLocation = departureLocationET.getText().toString();
+        String arrivalLocation = arrivalLocationET.getText().toString();
 
-        BusScheduleInfoMC busScheduleInfoMC = new BusScheduleInfoMC(busId,busName,departureDate,departureTime,arrivalDate,arrivalTime);
+        BusScheduleInfoMC busScheduleInfoMC = new BusScheduleInfoMC(busId,busName,departureLocation,arrivalLocation,departureDate,departureTime,arrivalDate,arrivalTime);
 
         ///Toast.makeText(this, busName+"\n"+busId+"\n"+departureDate+"\n"+departureTime+"\n"+arrivalDate+"\n"+arrivalTime+"\n", Toast.LENGTH_LONG).show();
 

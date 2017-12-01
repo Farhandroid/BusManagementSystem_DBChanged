@@ -81,6 +81,36 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/departureLocationSC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Departure Location" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/arrivalLocationSC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Arrival Location" />
+
+            </android.support.design.widget.TextInputLayout>
+
 
             <LinearLayout
                 android:orientation="horizontal"

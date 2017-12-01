@@ -244,7 +244,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.getCount()>0)
         {
-            String sql1 = "insert into " + TableAttribute.BUS_SCHEDULE_TABLE + " ( " + TableAttribute.COL_BUS_ID + " , " + TableAttribute.COL_BUS_NAME + " , " + TableAttribute.COL_DEPARTURE_DATE + " , " + TableAttribute.COL_DEPARTUR_TIME + " , " + TableAttribute.COL_ARRIVAL_DATE + " , " + TableAttribute.COL_ARRIVAL_TIME + " ) values( '" + busScheduleInfoMC.getBusID() + "' , '" + busScheduleInfoMC.getBusName() + "' , '" + busScheduleInfoMC.getDepartureDate() + "' , '" + busScheduleInfoMC.getDepartureTime() + "' , '" + busScheduleInfoMC.getArrivalDate() + "' , ' " + busScheduleInfoMC.getArrivaleTime() + "')";
+            String sql1 = "insert into " + TableAttribute.BUS_SCHEDULE_TABLE + " ( " + TableAttribute.COL_BUS_ID + " , " + TableAttribute.COL_BUS_NAME + " , "+ TableAttribute.COL_DEPARTURE_LOCATION + " , "+ TableAttribute.COL_ARRIVAL_LOCATION + " , " + TableAttribute.COL_DEPARTURE_DATE + " , " + TableAttribute.COL_DEPARTUR_TIME + " , " + TableAttribute.COL_ARRIVAL_DATE + " , " + TableAttribute.COL_ARRIVAL_TIME + " ) values( '" + busScheduleInfoMC.getBusID() + "' , '" + busScheduleInfoMC.getBusName()+ "' , '" + busScheduleInfoMC.getDepartureLocation()+ "' , '" + busScheduleInfoMC.getArrivalLocation() + "' , '" + busScheduleInfoMC.getDepartureDate() + "' , '" + busScheduleInfoMC.getDepartureTime() + "' , '" + busScheduleInfoMC.getArrivalDate() + "' , ' " + busScheduleInfoMC.getArrivaleTime() + "')";
             ///try {
                 db.execSQL(sql1);
 

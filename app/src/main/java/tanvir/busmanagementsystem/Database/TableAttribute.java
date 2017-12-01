@@ -35,6 +35,8 @@ public class TableAttribute {
 
     public static final String BUS_SCHEDULE_TABLE="BusSchedule";
     public static final String COL_SCHEDULE_ID="SchedulePk";
+    public static final String COL_DEPARTURE_LOCATION="DepartureLocation";
+    public static final String COL_ARRIVAL_LOCATION="ArrivalLocation";
     public static final String COL_DEPARTURE_DATE="DepartureDate";
     public static final String COL_DEPARTUR_TIME="DepartureTime";
     public static final String COL_ARRIVAL_DATE="ArrivalDate";
@@ -63,7 +65,7 @@ public class TableAttribute {
         ///String query = "CREATE TABLE IF NOT EXISTS "+ BUS_SCHEDULE_TABLE +" ( "+ COL_SCHEDULE_ID + " INTEGER  primary key autoincrement , "+COL_BUS_ID+" TEXT NOT NULL , " +COL_BUS_NAME + " TEXT NOT NULL,"+COL_DEPARTURE_DATE + " TEXT  NOT NULL , "+COL_DEPARTUR_TIME+" TEXT  NOT NULL , "+COL_ARRIVAL_DATE+" TEXT  NOT NULL , "+COL_DEPARTUR_TIME+ "TEXT  NOT NULL , FOREIGN KEY ( "+COL_BUS_ID+" , " +COL_BUS_NAME +") references "+BUS_TABLE+ " ( "+COL_BUS_ID+" , "+COL_BUS_NAME+ " ) )";
         ///String query = "CREATE TABLE IF NOT EXISTS "+ BUS_SCHEDULE_TABLE +" ( "+ COL_SCHEDULE_ID + " INTEGER primary key autoincrement  , "+COL_BUS_ID+" TEXT NOT NULL , " +COL_BUS_NAME + " TEXT NOT NULL,"+COL_DEPARTURE_DATE + " TEXT  NOT NULL , "+COL_DEPARTUR_TIME+" TEXT  NOT NULL , "+COL_ARRIVAL_DATE+" TEXT  NOT NULL , "+COL_DEPARTUR_TIME+ "TEXT  NOT NULL )";
 
-        String query = "CREATE TABLE IF NOT EXISTS "+ BUS_SCHEDULE_TABLE +" ( "+ COL_SCHEDULE_ID + " INTEGER  primary key autoincrement , "+COL_BUS_ID+" TEXT NOT NULL , " +COL_BUS_NAME + " TEXT NOT NULL,"+COL_DEPARTURE_DATE + " TEXT  NOT NULL , "+COL_DEPARTUR_TIME+" TEXT  NOT NULL , "+COL_ARRIVAL_DATE+" TEXT  NOT NULL , "+COL_ARRIVAL_TIME+ " TEXT  NOT NULL  )";
+        String query = "CREATE TABLE IF NOT EXISTS "+ BUS_SCHEDULE_TABLE +" ( "+ COL_SCHEDULE_ID + " INTEGER  primary key autoincrement , "+COL_BUS_ID+" TEXT NOT NULL , " +COL_BUS_NAME + " TEXT NOT NULL ,"+COL_DEPARTURE_LOCATION+" TEXT NOT NULL , "+COL_ARRIVAL_LOCATION+" TEXT NOT NULL , "+COL_DEPARTURE_DATE + " TEXT  NOT NULL , "+COL_DEPARTUR_TIME+" TEXT  NOT NULL , "+COL_ARRIVAL_DATE+" TEXT  NOT NULL , "+COL_ARRIVAL_TIME+ " TEXT  NOT NULL  )";
         return query;
     }
 

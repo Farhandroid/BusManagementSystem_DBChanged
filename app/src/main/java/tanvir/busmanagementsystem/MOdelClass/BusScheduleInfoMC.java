@@ -7,12 +7,27 @@ package tanvir.busmanagementsystem.MOdelClass;
 public class BusScheduleInfoMC {
 
     private int busScheduleInfoPK;
-    private String busName;
     private String busID;
+    private String busName;
+
+    private String departureLocation;
+    private String arrivalLocation;
     private String departureDate;
     private String departureTime;
     private String arrivalDate;
     private String arrivaleTime;
+
+    public BusScheduleInfoMC(  String busID,String busName, String departureLocation, String arrivalLocation, String departureDate, String departureTime, String arrivalDate, String arrivaleTime) {
+
+        this.busName = busName;
+        this.busID = busID;
+        this.departureLocation = departureLocation;
+        this.arrivalLocation = arrivalLocation;
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.arrivalDate = arrivalDate;
+        this.arrivaleTime = arrivaleTime;
+    }
 
     public int getBusScheduleInfoPK() {
         return busScheduleInfoPK;
@@ -36,6 +51,22 @@ public class BusScheduleInfoMC {
 
     public void setBusID(String busID) {
         this.busID = busID;
+    }
+
+    public String getDepartureLocation() {
+        return departureLocation;
+    }
+
+    public void setDepartureLocation(String departureLocation) {
+        this.departureLocation = departureLocation;
+    }
+
+    public String getArrivalLocation() {
+        return arrivalLocation;
+    }
+
+    public void setArrivalLocation(String arrivalLocation) {
+        this.arrivalLocation = arrivalLocation;
     }
 
     public String getDepartureDate() {
@@ -67,17 +98,6 @@ public class BusScheduleInfoMC {
     }
 
     public void setArrivaleTime(String arrivaleTime) {
-        this.arrivaleTime = arrivaleTime;
-    }
-
-
-
-    public BusScheduleInfoMC( String busID, String busName,String departureDate, String departureTime, String arrivalDate, String arrivaleTime) {
-        this.busName = busName;
-        this.busID = busID;
-        this.departureDate = departureDate;
-        this.departureTime = departureTime;
-        this.arrivalDate = arrivalDate;
         this.arrivaleTime = arrivaleTime;
     }
 }
