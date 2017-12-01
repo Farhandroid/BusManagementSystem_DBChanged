@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="5dp"
+    android:layout_height="match_parent"
+    android:background="@color/activityBackgroundDark"
+    tools:context="tanvir.busmanagementsystem.AddBusScheDuleActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="120dp"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+
+                android:text="Bus  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="120dp"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+                android:text="Schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/busIdETSQ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Bus ID" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/busNameETSQ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Bus Name" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:inputType="textCapSentences"
+                        android:onClick="selectDate"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:layout_width="172dp"
+                        android:id="@+id/departureDateET"
+                        android:layout_height="wrap_content"
+                        android:hint="Departure Date" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:inputType="textCapSentences"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:onClick="selectDepartureTime"
+                        android:layout_width="180dp"
+                        android:id="@+id/departureTimeET"
+                        android:layout_height="wrap_content"
+                        android:hint="Departure Time" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:inputType="textCapSentences"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:onClick="selectDateArrival"
+                        android:layout_width="172dp"
+                        android:id="@+id/arrivalDateET"
+                        android:layout_height="wrap_content"
+                        android:hint="Arrival Date" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:inputType="textCapSentences"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:onClick="selectArrivalTime"
+                        android:layout_width="180dp"
+                        android:id="@+id/arrivalTimeET"
+                        android:layout_height="wrap_content"
+                        android:hint="Arrival Time" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:text="Add"
+            android:onClick="addBusSchedule"
+            android:background="@drawable/button_shape_default_rounded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</ScrollView>
+

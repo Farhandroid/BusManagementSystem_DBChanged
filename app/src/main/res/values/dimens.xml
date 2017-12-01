@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="locationHeightAndWidth">50dp</dimen>
+    <dimen name="marginTopINAdminBusInput">15dp</dimen>
+    <dimen name="seat_width">31dp</dimen>
+    <dimen name="seat_hight">24dp</dimen>
+    <dimen name="margin_for_first_third_seat">20dp</dimen>
+    <dimen name="seat_middle_gap">118dp</dimen>
 </resources>

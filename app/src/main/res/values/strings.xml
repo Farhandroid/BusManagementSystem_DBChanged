@@ -2,4 +2,133 @@
     <string name="app_name">BusManagementSystem</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+
+    <string-array name="country_array">
+        <item>Dhaka</item>
+        <item>Chittagong</item>
+        <item>Khulna</item>
+        <item>Rajshahi</item>
+        <item>Sylhet</item>
+        <item>Barisal</item>
+        <item>Bagerhat</item>
+        <item>Bandarban</item>
+        <item>Barguna</item>
+        <item>Bhola</item>
+        <item>Brahmanbaria</item>
+        <item>Bogra</item>
+        <item>Chandpur</item>
+        <item>Chuadanga</item>
+        <item>Comilla</item>
+        <item>Coxs Bazar</item>
+
+        <item>Dinajpur</item>
+
+        <item>Feni</item>
+
+        <item>Faridpur</item>
+
+        <item>Gaibandha</item>
+
+        <item>Gazipur</item>
+
+        <item>Gopalganj</item>
+
+        <item>Habiganj</item>
+
+        <item>Jessore</item>
+
+        <item>Jhalakati</item>
+
+        <item>Jamalpur</item>
+
+        <item>Joypurhat</item>
+
+        <item>Jhenaidah</item>
+
+        <item>Kurigram</item>
+
+        <item>Khagrachari</item>
+
+        <item>Kustia</item>
+
+        <item>Kishorganj</item>
+
+        <item>Laxmipur</item>
+
+        <item>Lalmonirhat</item>
+
+        <item>Madaripur</item>
+
+        <item>Magura</item>
+
+        <item>Meherpur</item>
+
+        <item>Moulvibazar</item>
+
+        <item>Mymensingh</item>
+
+        <item>Manikgonj</item>
+
+        <item>Munsiganj</item>
+
+        <item>Narail</item>
+
+        <item>Narayangonj</item>
+
+        <item>Noakhali</item>
+
+        <item>Naogaon</item>
+
+        <item>Narsingdi</item>
+
+        <item>Natore</item>
+
+        <item>Nawabgonj</item>
+
+        <item>Netrokona</item>
+
+        <item>Nilphamari</item>
+
+        <item>Pabna</item>
+
+        <item>Panchagarh</item>
+
+        <item>Patuakhali</item>
+
+        <item>Pirojpur</item>
+
+        <item>Rajbari</item>
+
+        <item>Rangamati</item>
+
+        <item>Rangpur</item>
+
+        <item>Shariatpur</item>
+
+        <item>Satkhira</item>
+
+        <item>Sherpur</item>
+
+        <item>Sirajganj</item>
+
+        <item>Sunamgonj</item>
+
+        <item>Tangail</item>
+
+        <item>Thakurgaon</item>
+
+    </string-array>
+
+    <string-array name="bus_type">
+        <item> Select </item>
+        <item>Ac</item>
+        <item>Non-Ac </item>
+    </string-array>
+
+    <string-array name="bus_seat_number">
+        <item>Select</item>
+        <item>32</item>
+        <item>36 </item>
+        <item>40 </item>
+    </string-array>
 </resources>

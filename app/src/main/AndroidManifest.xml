@@ -10,15 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".SignIn" />
+        <activity android:name=".SignUp" />
+        <activity
+            android:name=".BustListAV"
+            android:theme="@style/CustomAppTheme" />
+        <activity
+            android:name=".SeatViewActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity android:name=".AddBusActivity"></activity>
+        <activity android:name=".AddBusScheDuleActivity"></activity>
+        <activity android:name=".AdminActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignIn"></activity>
-        <activity android:name=".SignUp"></activity>
-        <activity android:name=".AfterLogin"></activity>
     </application>
 
 </manifest>

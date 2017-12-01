@@ -56,23 +56,44 @@ public class SignUp extends AppCompatActivity {
 
     public void createAccount(View view) {
 
-        boolean result = databaseHelper.insertDataInDatabase(userNameET.getText().toString(),passwordET.getText().toString(),emailET.getText().toString());
+        boolean result=false;
 
-        ///Toast.makeText(this, userNameET.getText().toString()+"\n"+passwordET.getText().toString(), Toast.LENGTH_SHORT).show();
-
-        if (result)
+        if (userNameET.getText().toString().length()>0 && passwordET.getText().toString().length()>0 && emailET.getText().toString().length()>0)
         {
-            TastyToast.makeText(getApplicationContext(), "Sign up success", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
-            userNameET.getText().clear();
-            passwordET.getText().clear();
-            emailET.getText().clear();
+           result = databaseHelper.insertDataInDatabase(userNameET.getText().toString(),passwordET.getText().toString(),emailET.getText().toString());
+
+
+            if (result)
+            {
+                TastyToast.makeText(getApplicationContext(), "Sign up success", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+                userNameET.getText().clear();
+                passwordET.getText().clear();
+                emailET.getText().clear();
+
+                Intent myIntent = new Intent(SignUp.this, SignIn.class);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                SignUp.this.startActivity(myIntent);
+                overridePendingTransition(R.anim.right_in,R.anim.right_out);
+                finish();
+
+            }
+            else
+            {
+                TastyToast.makeText(getApplicationContext(), "Sorry this username already taken .", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+
+            }
 
         }
         else
         {
-            TastyToast.makeText(getApplicationContext(), "Sorry this username already taken .", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+            TastyToast.makeText(getApplicationContext(), "PLease fill up all field .  .", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
         }
+
+
+
+        ///Toast.makeText(this, userNameET.getText().toString()+"\n"+passwordET.getText().toString(), Toast.LENGTH_SHORT).show();
+
 
     }
 }

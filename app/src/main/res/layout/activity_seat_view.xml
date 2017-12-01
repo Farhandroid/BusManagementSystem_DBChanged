@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    tools:context="tanvir.busmanagementsystem.SeatViewActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutInMA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:layout_marginLeft="23dp"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/comfortable_empty" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:text="Empty"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/comfortable_booked" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:text="Booked"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/comfortable_selected" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selected"
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutInMA"
+        android:background="@drawable/border">
+
+        <ImageView
+            android:id="@+id/steering"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/steering_wheel" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/seatViewRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/steering"
+            android:padding="10dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+

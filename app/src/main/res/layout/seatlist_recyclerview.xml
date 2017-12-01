@@ -1,0 +1,140 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/RelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp">
+
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:layout_marginLeft="3dp"
+            android:id="@+id/firstSeatEmpty"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/margin_for_first_third_seat"
+            android:src="@drawable/comfortable_empty"
+            />
+
+        <ImageView
+            android:id="@+id/secondSeatEmpty"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/seat_middle_gap"
+            android:src="@drawable/comfortable_empty" />
+
+        <ImageView
+            android:id="@+id/thirdSeatEmpty"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/margin_for_first_third_seat"
+            android:src="@drawable/comfortable_empty" />
+
+        <ImageView
+            android:id="@+id/fourthSeatEmpty"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+
+            android:src="@drawable/comfortable_empty" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginLeft="3dp"
+            android:id="@+id/firstSeatSelected"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/margin_for_first_third_seat"
+            android:src="@drawable/comfortable_selected"
+            android:visibility="invisible"
+
+            />
+
+        <ImageView
+            android:id="@+id/secondSeatSelected"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/seat_middle_gap"
+            android:src="@drawable/comfortable_selected"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/thirdSeatSelected"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/margin_for_first_third_seat"
+            android:src="@drawable/comfortable_selected"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/fourthSeatSelected"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:src="@drawable/comfortable_selected"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginLeft="3dp"
+            android:id="@+id/firstSeatBooked"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/margin_for_first_third_seat"
+            android:src="@drawable/comfortable_booked"
+            android:visibility="invisible"
+
+            />
+
+        <ImageView
+            android:id="@+id/secondSeatBooked"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/seat_middle_gap"
+            android:src="@drawable/comfortable_booked"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/thirdSeatBooked"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:layout_marginRight="@dimen/margin_for_first_third_seat"
+            android:src="@drawable/comfortable_booked"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/fourthSeatBooked"
+            android:layout_width="@dimen/seat_width"
+            android:layout_height="@dimen/seat_hight"
+            android:src="@drawable/comfortable_booked"
+            android:visibility="invisible"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,13 +1,10 @@
 package tanvir.busmanagementsystem;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -69,7 +66,7 @@ public class SignIn extends AppCompatActivity {
 
 
 
-            Intent myIntent = new Intent(SignIn.this, AfterLogin.class);
+            Intent myIntent = new Intent(SignIn.this, AdminActivity.class);
             myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             SignIn.this.startActivity(myIntent);
             overridePendingTransition(R.anim.left_in,R.anim.left_out);
