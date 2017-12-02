@@ -106,7 +106,7 @@ public class AddBusActivity extends AppCompatActivity implements AdapterView.OnI
 
         BusINfoMC busINfoMC = new BusINfoMC(busName,busId,busType,totalBusSeat,busSeatPrice);
 
-        Toast.makeText(this, busName+"\n"+busId+"\n"+busType+"\n"+totalBusSeat+"\n"+busSeatPrice+"\n", Toast.LENGTH_LONG).show();
+       /// Toast.makeText(this, busName+"\n"+busId+"\n"+busType+"\n"+totalBusSeat+"\n"+busSeatPrice+"\n", Toast.LENGTH_LONG).show();
 
         Boolean aBoolean = databaseHelper.addBusInDatabase(busINfoMC);
 

@@ -1,72 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="8dp"
-    android:id="@+id/cardView"
-    app:cardElevation="3dp"
-    android:clickable="true"
-    app:contentPadding="9dp"
-    android:foreground="?selectableItemBackground"
-    >
+    android:orientation="vertical"
+    android:background="@color/activityBackground">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.CardView
+
+        android:padding="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_margin="0dp"
-            android:id="@+id/timeInRV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Time"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            />
+        android:layout_height="110dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="14dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
-            android:layout_marginTop="0dp"
+            android:id="@+id/rvLL"
+            android:padding="8dp"
+            android:background="@color/activityBackgroundDark"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_marginTop="2dp"
-                android:textColor="#000000"
-                android:textSize="17sp"
-                android:id="@+id/busNameInRV"
-                android:text="Bus Name"
-                android:layout_width="260dp"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:fontFamily="serif"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:layout_width="210dp"
+                    android:text="0:5 - 2:54"
+                    android:id="@+id/busTimeInRV"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/busNameInRV"
+                    android:text="Hanif"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/busTypeInRV"
+                    android:text="AC"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/seatPriceInRV"
-                android:layout_marginLeft="7dp"
-                android:textSize="21sp"
-                android:textColor="@color/colorAccent"
-                android:text="400/-"
-                android:layout_width="match_parent"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="50dp"
+                android:textSize="20sp"
+                android:text="500/-"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+
 
         </LinearLayout>
 
 
-        <TextView
-            android:layout_marginTop="2dp"
-            android:textColor="#000000"
-            android:textSize="17sp"
-            android:id="@+id/busTypeInRV"
-            android:text="Type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 
-
-</android.support.v7.widget.CardView>
+</LinearLayout>

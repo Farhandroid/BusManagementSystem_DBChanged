@@ -17,7 +17,23 @@ public class BusScheduleInfoMC {
     private String arrivalDate;
     private String arrivaleTime;
 
-    public BusScheduleInfoMC(  String busID,String busName, String departureLocation, String arrivalLocation, String departureDate, String departureTime, String arrivalDate, String arrivaleTime) {
+    public BusScheduleInfoMC() {
+
+    }
+
+    public BusScheduleInfoMC(int busScheduleInfoPK, String busID, String busName, String departureLocation, String arrivalLocation, String departureDate, String departureTime, String arrivalDate, String arrivaleTime) {
+        this.busScheduleInfoPK = busScheduleInfoPK;
+        this.busID = busID;
+        this.busName = busName;
+        this.departureLocation = departureLocation;
+        this.arrivalLocation = arrivalLocation;
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.arrivalDate = arrivalDate;
+        this.arrivaleTime = arrivaleTime;
+    }
+
+    public BusScheduleInfoMC(String busID, String busName, String departureLocation, String arrivalLocation, String departureDate, String departureTime, String arrivalDate, String arrivaleTime) {
 
         this.busName = busName;
         this.busID = busID;

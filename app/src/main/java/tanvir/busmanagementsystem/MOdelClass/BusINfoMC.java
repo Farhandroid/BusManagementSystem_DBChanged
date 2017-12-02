@@ -12,9 +12,19 @@ public class BusINfoMC {
     private String busID;
     private String busType;
 
+    public BusINfoMC() {
+
+    }
+
     public BusINfoMC(String busName, String busID) {
         this.busName = busName;
         this.busID = busID;
+    }
+
+    public BusINfoMC(String busType, String totalBusSeat, String busSeatPrice) {
+        this.busType = busType;
+        this.totalBusSeat = totalBusSeat;
+        this.busSeatPrice = busSeatPrice;
     }
 
     private String totalBusSeat;

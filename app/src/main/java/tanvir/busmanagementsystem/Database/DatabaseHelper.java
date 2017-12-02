@@ -8,8 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.design.widget.TabLayout;
 import android.widget.Toast;
 
+import com.sdsmdg.tastytoast.TastyToast;
+
 import java.util.ArrayList;
 
+import tanvir.busmanagementsystem.BustListAV;
 import tanvir.busmanagementsystem.MOdelClass.BusINfoMC;
 import tanvir.busmanagementsystem.MOdelClass.BusScheduleInfoMC;
 
@@ -268,6 +271,73 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         //return false;
+
+    }
+
+    public ArrayList<BusScheduleInfoMC> getDataFromBusScheduleForRV(String DepartueLocation ,String ArrivalLocation,String DepartureDate)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectString = "SELECT * FROM " + TableAttribute.BUS_SCHEDULE_TABLE+ " WHERE " + TableAttribute.COL_DEPARTURE_LOCATION + " = ?  AND " + TableAttribute.COL_ARRIVAL_LOCATION + " = ? AND "+ TableAttribute.COL_DEPARTURE_DATE + " = ?";
+
+        Cursor cursor = db.rawQuery(selectString, new String[]{DepartueLocation, ArrivalLocation,DepartureDate});
+
+
+        ArrayList<BusScheduleInfoMC> busScheduleInfoMCS = new ArrayList<>();
+
+
+        if (cursor.getCount() > 0) {
+            ///Toast.makeText(context, "data found BusScheduleInfoMC DB", Toast.LENGTH_SHORT).show();
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+
+
+
+                BusScheduleInfoMC busScheduleInfoMC = new BusScheduleInfoMC();
+
+                busScheduleInfoMC.setBusScheduleInfoPK(cursor.getInt(cursor.getColumnIndex(TableAttribute.COL_SCHEDULE_ID)));
+                busScheduleInfoMC.setBusName(cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_NAME)));
+                busScheduleInfoMC.setBusID(cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_ID)));
+                busScheduleInfoMC.setDepartureTime(cursor.getString(cursor.getColumnIndex(TableAttribute.COL_DEPARTUR_TIME)));
+                busScheduleInfoMC.setArrivaleTime(cursor.getString(cursor.getColumnIndex(TableAttribute.COL_ARRIVAL_TIME)));
+                busScheduleInfoMC.setDepartureLocation(DepartueLocation);
+                busScheduleInfoMC.setArrivalLocation(ArrivalLocation);
+
+                busScheduleInfoMCS.add(busScheduleInfoMC);
+
+                cursor.moveToNext();
+            }
+
+
+
+        }
+
+
+
+        Toast.makeText(context, "DB : "+busScheduleInfoMCS.get(0).getBusID(), Toast.LENGTH_SHORT).show();
+        return busScheduleInfoMCS;
+
+
+
+    }
+
+    public BusINfoMC getbuaTypeBusSeatSeatPriceFromDB(String busId , String busName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + TableAttribute.COL_BUS_TYPE + " , " + TableAttribute.COL_TOTAL_BUS_SEAT+ " , " + TableAttribute.COL_BUS_SEAT_PRICE + " FROM " + TableAttribute.BUS_TABLE+ " WHERE " + TableAttribute.COL_BUS_ID+ " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{busId, busName});
+        BusINfoMC busINfoMC = null;
+
+        if (cursor.getCount()>0)
+        {
+            cursor.moveToFirst();
+            String busType = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_TYPE));
+            String totalBusSeat =cursor.getString(cursor.getColumnIndex(TableAttribute.COL_TOTAL_BUS_SEAT));
+            String busSeatPrice = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_SEAT_PRICE));
+
+            busINfoMC = new BusINfoMC(busType,totalBusSeat,busSeatPrice);
+        }
+        return  busINfoMC;
 
     }
 

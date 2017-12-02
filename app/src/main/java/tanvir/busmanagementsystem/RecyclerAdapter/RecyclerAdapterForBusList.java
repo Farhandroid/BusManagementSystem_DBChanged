@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import tanvir.busmanagementsystem.BustListAV;
 import tanvir.busmanagementsystem.MOdelClass.BusINfoMC;
+import tanvir.busmanagementsystem.MOdelClass.BusScheduleInfoMC;
 import tanvir.busmanagementsystem.R;
 import tanvir.busmanagementsystem.SeatViewActivity;
 
@@ -26,11 +28,13 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
 
     ArrayList<BusINfoMC> busINfoMCArrayList;
+    ArrayList<BusScheduleInfoMC> busScheduleInfoMCS;
     Context context;
 
-    public RecyclerAdapterForBusList(Context context, ArrayList<BusINfoMC> busINfoMCArrayList) {
+    public RecyclerAdapterForBusList(Context context, ArrayList<BusINfoMC> busINfoMCArrayList,ArrayList<BusScheduleInfoMC> busScheduleInfoMCS) {
         this.context = context;
         this.busINfoMCArrayList = busINfoMCArrayList;
+        this.busScheduleInfoMCS=busScheduleInfoMCS;
 
     }
 
@@ -39,17 +43,22 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_for_bus_list_rv, parent, false);
 
-        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view, context, busINfoMCArrayList);
+        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view, context, busINfoMCArrayList,busScheduleInfoMCS);
         return recyclerViewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
 
+        String time = busScheduleInfoMCS.get(position).getDepartureTime()+" - "+busScheduleInfoMCS.get(position).getArrivaleTime();
+
         ///holder.departureTimeTV.setText(busINfoMCArrayList.get(position).getDepartureTime());
-        holder.busNameTV.setText(busINfoMCArrayList.get(position).getBusName());
+       holder.busTimeTV.setText(time);
+        holder.busNameTV.setText(busScheduleInfoMCS.get(position).getBusName());
         holder.busTypeTV.setText(busINfoMCArrayList.get(position).getBusType());
         holder.seatPriceTV.setText(busINfoMCArrayList.get(position).getBusSeatPrice()+"/-");
+
+        ///Toast.makeText(context, "RV busType "+busINfoMCArrayList.get(position).getBusType(), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -62,29 +71,31 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 
     {
-        TextView departureTimeTV;
+        TextView busTimeTV;
         TextView busNameTV;
         TextView busTypeTV;
         TextView seatPriceTV;
         ArrayList<BusINfoMC> busINfoMCArrayList;
+        ArrayList<BusScheduleInfoMC> busScheduleInfoMCS;
 
         Context context;
 
-        CardView cardView;
+        LinearLayout linearLayout;
 
-        public RecyclerViewHolder(View view, final Context context, final ArrayList<BusINfoMC> busINfoMCS) {
+        public RecyclerViewHolder(View view, final Context context, final ArrayList<BusINfoMC> busINfoMCS,ArrayList<BusScheduleInfoMC> busScheduleInfoMCS) {
             super(view);
             this.busINfoMCArrayList = busINfoMCS;
+            this.busScheduleInfoMCS=busScheduleInfoMCS;
 
             this.context = context;
 
-            cardView= view.findViewById(R.id.cardView);
-            departureTimeTV = (TextView) view.findViewById(R.id.timeInRV);
+            linearLayout= view.findViewById(R.id.rvLL);
+            busTimeTV = (TextView) view.findViewById(R.id.busTimeInRV);
             busNameTV = (TextView) view.findViewById(R.id.busNameInRV);
             busTypeTV = (TextView) view.findViewById(R.id.busTypeInRV);
             seatPriceTV = (TextView) view.findViewById(R.id.seatPriceInRV);
 
-            cardView.setOnClickListener(this);
+           linearLayout.setOnClickListener(this);
 
 
         }
