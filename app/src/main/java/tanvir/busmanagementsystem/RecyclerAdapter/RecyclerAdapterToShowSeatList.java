@@ -35,8 +35,9 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
     int scheduleId;
     String busSeatPrice;
     ArrayList<SeatInfoMC> seatInfoMCS;
+    Integer totalseat;
 
-    public RecyclerAdapterToShowSeatList(Context context, TextView counterText,Button buyTicket,int scheduleId,String busSeatPrice,ArrayList<SeatInfoMC> seatInfoMCS) {
+    public RecyclerAdapterToShowSeatList(Context context, TextView counterText,Button buyTicket,int scheduleId,String busSeatPrice,ArrayList<SeatInfoMC> seatInfoMCS,Integer totalseat) {
         this.context = context;
         this.CounterTextView=counterText;
         seatNumber=new ArrayList<>();
@@ -44,6 +45,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
         this.scheduleId=scheduleId;
         this.busSeatPrice=busSeatPrice;
         this.seatInfoMCS=seatInfoMCS;
+        this.totalseat=totalseat;
 
 
     }
@@ -116,7 +118,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
         ///else
         ///seatNumber.clear();
 
-        if (position==9)
+        if (position==(totalseat-1))
             seatNumber.clear();
 
 
@@ -124,7 +126,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
     @Override
     public int getItemCount() {
-        return 10;
+        return totalseat;
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder

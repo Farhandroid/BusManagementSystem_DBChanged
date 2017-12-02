@@ -1,6 +1,7 @@
 package tanvir.busmanagementsystem;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,15 @@ public class SignIn extends AppCompatActivity {
 
         ButterKnife.bind(this);
         databaseHelper = new DatabaseHelper(this);
+
+        SharedPreferences prefs = getSharedPreferences("loginInfo", MODE_PRIVATE);
+        String logged = prefs.getString("isLogged?", "");
+
+        if (logged.contains("yes"))
+        {
+            startAdminActivity();
+        }
+
     }
 
     public void startSignUpPage(View view) {
@@ -60,17 +70,18 @@ public class SignIn extends AppCompatActivity {
 
         if (result)
         {
-            TastyToast.makeText(getApplicationContext(), "Welcome  "+userNameET.getText().toString(), TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
-           userNameET.getText().clear();
+            userNameET.getText().clear();
             passwordET.getText().clear();
+            TastyToast.makeText(getApplicationContext(), "Welcome  "+userNameET.getText().toString(), TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+
+
+            SharedPreferences.Editor editor = getSharedPreferences("loginInfo", MODE_PRIVATE).edit();
+            editor.putString("isLogged?", "yes");
+            editor.apply();
 
 
 
-            Intent myIntent = new Intent(SignIn.this, AdminActivity.class);
-            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            SignIn.this.startActivity(myIntent);
-            overridePendingTransition(R.anim.left_in,R.anim.left_out);
-            finish();
+            startAdminActivity();
         }
         else
         {
@@ -78,8 +89,14 @@ public class SignIn extends AppCompatActivity {
 
         }
 
+    }
 
-
-
+    public void startAdminActivity()
+    {
+        Intent myIntent = new Intent(SignIn.this, AdminActivity.class);
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        SignIn.this.startActivity(myIntent);
+        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+        finish();
     }
 }

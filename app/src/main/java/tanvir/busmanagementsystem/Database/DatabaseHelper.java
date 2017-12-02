@@ -333,7 +333,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         boolean res = true;
         for (int i = 0; i < seatInfoMCS.size(); i++) {
-            Toast.makeText(context, "Seat info size in db : " + Integer.toString(seatInfoMCS.size()), Toast.LENGTH_SHORT).show();
+           /// Toast.makeText(context, "Seat info size in db : " + Integer.toString(seatInfoMCS.size()), Toast.LENGTH_SHORT).show();
             String sql1 = "insert into " + TableAttribute.SEAT_TABLE + " ( " + TableAttribute.COL_SCHEDULE_ID + " , " + TableAttribute.COL_SEAT_NUMBER + " , " + TableAttribute.COL_CUSTOMER_NAME + " , " + TableAttribute.COL_CUSTOMER_MOBILE_NUMBER + " , " + TableAttribute.COL_CUSTOMER_EMAIL + " , " + TableAttribute.COL_SEAT_CANCELLABLE_TOKEN + " ) values( '" + seatInfoMCS.get(i).getSchedule_id() + "' , '" + seatInfoMCS.get(i).getSeatNumber() + "' , '" + seatInfoMCS.get(i).getCustomerName() + "' , '" + seatInfoMCS.get(i).getCustomerMobileNumber() + "' , '" + seatInfoMCS.get(i).getCustomerEmail() + "' , '" + seatInfoMCS.get(i).getSeatCancellableToken() + "')";
 
 

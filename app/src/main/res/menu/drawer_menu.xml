@@ -12,6 +12,10 @@
             android:id="@+id/login"
             android:title="login"
             />
+        <item
+            android:id="@+id/cancelTicket"
+            android:title="Cancel Ticket"
+            />
     </group>
 
 </menu>

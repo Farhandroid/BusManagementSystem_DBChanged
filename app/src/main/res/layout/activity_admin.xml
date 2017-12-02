@@ -54,7 +54,7 @@
                         android:inputType="textCapSentences"
                         android:textColor="#757575"
                         android:background="#00000000"
-                        android:id="@+id/fromLocationTV"
+                        android:id="@+id/fromLocationETAD"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/locationHeightAndWidth"
                         android:layout_marginLeft="5dp"
@@ -91,7 +91,7 @@
                         android:inputType="textCapSentences"
                         android:textColor="#757575"
                         android:background="#00000000"
-                        android:id="@+id/toLocationET"
+                        android:id="@+id/toLocationETAD"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/locationHeightAndWidth"
                         android:layout_marginLeft="5dp"
@@ -136,7 +136,8 @@
                     android:focusable="false"
                     android:clickable="true"
                     android:layout_marginTop="27dp"
-                    android:id="@+id/selectJourneyDateET"
+                    android:onClick="selectDateAD"
+                    android:id="@+id/selectJourneyDateETAD"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/locationHeightAndWidth"
                     android:layout_marginLeft="9dp"
@@ -148,11 +149,12 @@
         </android.support.v7.widget.CardView>
 
         <Button
-
-            android:id="@+id/loginBTN"
+            android:id="@+id/searchAD"
             tools:mockup_opacity="@android:integer/config_longAnimTime"
             android:text="Search"
+
             android:layout_marginTop="15dp"
+            android:onClick="searchBusAD"
             android:background="@color/colorAccent"
             android:layout_gravity="center"
             android:layout_width="290dp"
@@ -209,7 +211,7 @@
                 fab:fab_colorRipple="@color/colorPrimaryDark"
                 fab:fab_colorNormal="@color/colorPrimaryDark"
                 android:id="@+id/logout"
-
+                android:onClick="startMainActivity"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -66,7 +66,7 @@ public class BuyTicket extends AppCompatActivity {
 
 
 
-        Toast.makeText(this, "seat  number Size : "+Integer.toString(seatNumber.size()), Toast.LENGTH_SHORT).show();
+        ///Toast.makeText(this, "seat  number Size : "+Integer.toString(seatNumber.size()), Toast.LENGTH_SHORT).show();
     }
 
     public String getArrayListAsString() {

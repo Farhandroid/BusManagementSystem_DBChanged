@@ -3,11 +3,13 @@ package tanvir.busmanagementsystem.RecyclerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import tanvir.busmanagementsystem.MOdelClass.BusINfoMC;
 import tanvir.busmanagementsystem.MOdelClass.BusScheduleInfoMC;
 import tanvir.busmanagementsystem.R;
 import tanvir.busmanagementsystem.SeatViewActivity;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by USER on 01-Feb-17.
@@ -97,6 +101,56 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
            linearLayout.setOnClickListener(this);
 
+           linearLayout.setOnLongClickListener(new View.OnLongClickListener() {
+               @Override
+               public boolean onLongClick(View v) {
+
+
+                   SharedPreferences prefs2 = context.getSharedPreferences("loginInfo", MODE_PRIVATE);
+                   String logged = prefs2.getString("isLogged?", "");
+
+                   if (logged.contains("yes"))
+                   {
+                       SharedPreferences.Editor editor2 = context.getSharedPreferences("fromAdmin?",MODE_PRIVATE).edit();
+                       editor2.putString("fromAdmin?","no");
+                       editor2.apply();
+
+
+                       View dialogView;
+                       AlertDialog alertDialog;
+
+                       AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+                       LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+
+                       ///LayoutInflater inflater = context.getLayoutInflater();
+                       dialogView = inflater.inflate(R.layout.bus_onlongclick_for_admon, null);
+                       dialogBuilder.setView(dialogView);
+                       alertDialog = dialogBuilder.create();
+                       alertDialog.show();
+
+                       TextView delete = dialogView.findViewById(R.id.deleteBusAD);
+                       TextView editBus = dialogView.findViewById(R.id.editBusAD);
+
+                       delete.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+
+                           }
+                       });
+
+                       editBus.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+
+                           }
+                       });
+
+                   }
+
+                   return true;
+               }
+           });
+
 
         }
 
@@ -108,6 +162,7 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
             Intent intent = new Intent(context, SeatViewActivity.class);
             intent.putExtra("seatPrice",busINfoMCArrayList.get(position).getBusSeatPrice());
+            intent.putExtra("totalSeat",busINfoMCArrayList.get(position).getTotalBusSeat());
 
             //Toast.makeText(context, "seatPrice RV : "+busINfoMCArrayList.get(position).getBusSeatPrice(), Toast.LENGTH_SHORT).show();
 

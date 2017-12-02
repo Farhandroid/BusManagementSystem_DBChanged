@@ -51,15 +51,19 @@ public class SeatViewActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
         scheduleId = mIntent.getIntExtra("scheduleId", 0);
         String busSeatPrice = mIntent.getStringExtra("seatPrice");
+        String totalbusSeat = mIntent.getStringExtra("totalSeat");
 
         retriveDataFromSeatTable();
+
+        int totalSeat  = Integer.parseInt(totalbusSeat);
+        totalSeat=totalSeat/4;
 
         ///Toast.makeText(this, "scheduleId : "+Integer.toString(scheduleId), Toast.LENGTH_SHORT).show();
 
 
         recyclerView = (RecyclerView) findViewById(R.id.seatViewRecyclerView);
 
-        adapter = new RecyclerAdapterToShowSeatList(SeatViewActivity.this,counterTextView,button,scheduleId,busSeatPrice,seatInfoMCS);
+        adapter = new RecyclerAdapterToShowSeatList(SeatViewActivity.this,counterTextView,button,scheduleId,busSeatPrice,seatInfoMCS,totalSeat);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -86,10 +90,10 @@ public class SeatViewActivity extends AppCompatActivity {
         seatInfoMCS=new ArrayList<>();
         seatInfoMCS = databaseHelper.getSeatUsingScheduleId(scheduleId);
 
-        if (seatInfoMCS.size()<0)
+        /*if (seatInfoMCS.size()<0)
             Toast.makeText(this, "seatInfoMCS not found bus seat actvt", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(this, "seatInfoMCS found : "+Integer.toString(seatInfoMCS.size()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "seatInfoMCS found : "+Integer.toString(seatInfoMCS.size()), Toast.LENGTH_SHORT).show();*/
 
     }
 }
