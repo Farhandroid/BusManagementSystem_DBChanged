@@ -45,7 +45,7 @@ public class BustListAV extends AppCompatActivity {
 
 
 
-        Toast.makeText(this, "Enter Bus List Activity ", Toast.LENGTH_SHORT).show();
+       /// Toast.makeText(this, "Enter Bus List Activity ", Toast.LENGTH_SHORT).show();
 
         SharedPreferences prefs = getSharedPreferences("bus_data", MODE_PRIVATE);
 
@@ -112,15 +112,15 @@ public class BustListAV extends AppCompatActivity {
 
             busINfoMC = databaseHelper.getbuaTypeBusSeatSeatPriceFromDB(busId, busName);
 
-           Toast.makeText(this, "Loopd : "+busINfoMC.getBusType(), Toast.LENGTH_SHORT).show();
+           ///Toast.makeText(this, "Loopd : "+busINfoMC.getBusType(), Toast.LENGTH_SHORT).show();
 
             busINfoMCArrayList.add(busINfoMC);
         }
 
-        if (busINfoMCArrayList.size() > 0)
+        /*if (busINfoMCArrayList.size() > 0)
             Toast.makeText(this, " busINfoMCArrayList data found", Toast.LENGTH_SHORT).show();
         if (busScheduleInfoMCS.size() > 0)
-            Toast.makeText(this, " busScheduleInfoMCS data found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, " busScheduleInfoMCS data found", Toast.LENGTH_SHORT).show();*/
 
 
 

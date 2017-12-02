@@ -25,7 +25,7 @@ public class TableAttribute {
 
 
     public static final String SEAT_TABLE="SeatInfo";
-    public static final String COL_PK="PrimaryKey";
+    public static final String COL_SEAT_INFO_PK="PrimaryKey";
     public static final String COL_SEAT_NUMBER="SeatNumber";
     public static final String COL_CUSTOMER_NAME="CustomerName";
     public static final String COL_CUSTOMER_MOBILE_NUMBER="CustomerMobileName";
@@ -72,7 +72,7 @@ public class TableAttribute {
     public String seatTableCreation()
     {
         ///String query = "CREATE TABLE IF NOT EXISTS "+ SEAT_TABLE +"( "+ COL_PK+" INTEGER PRIMARY KEY AUTO INCREMENT , " +COL_BUS_NAME +" TEXT , " +COL_BUS_ID + " TEXT, FOREIGN KEY ( "+COL_BUS_NAME+" , " +COL_BUS_ID +") REFFERENCES "+BUS_TABLE + "( "+COL_BUS_NAME+" , " +COL_BUS_ID +"), "+COL_SEAT_NUMBER +"TEXT  NOT NULL , "+COL_CUSTOMER_NAME+"TEXT  NOT NULL , "+COL_CUSTOMER_MOBILE_NUMBER+"TEXT  NOT NULL , "+COL_CUSTOMER_EMAIL+"TEXT  NOT NULL , "+COL_SEAT_CANCELLABLE_TOKEN+"TEXT  NOT NULL  ) ";
-        String query = "CREATE TABLE IF NOT EXISTS "+ SEAT_TABLE +"( "+ COL_PK +" INTEGER PRIMARY KEY AUTOINCREMENT , " +COL_BUS_NAME +" TEXT NOT NULL , " +COL_BUS_ID + " TEXT NOT NULL , "+COL_SEAT_NUMBER +" TEXT , "+COL_CUSTOMER_NAME+" TEXT   , "+COL_CUSTOMER_MOBILE_NUMBER+" TEXT , "+COL_CUSTOMER_EMAIL+" TEXT  , "+COL_SEAT_CANCELLABLE_TOKEN+" TEXT, FOREIGN KEY ( "+COL_BUS_NAME+" , " +COL_BUS_ID +") REFERENCES "+BUS_TABLE + "( "+COL_BUS_NAME+" , " +COL_BUS_ID +") )";
+        String query = "CREATE TABLE IF NOT EXISTS "+ SEAT_TABLE +"( "+ COL_SEAT_INFO_PK +" INTEGER PRIMARY KEY AUTOINCREMENT , " +COL_SCHEDULE_ID +" INTEGER NOT NULL , " +COL_SEAT_NUMBER + " TEXT NOT NULL , "+COL_CUSTOMER_NAME +" TEXT NOT NULL  , "+COL_CUSTOMER_MOBILE_NUMBER+" TEXT NOT NULL , "+COL_CUSTOMER_EMAIL+" TEXT NOT NULL , "+COL_SEAT_CANCELLABLE_TOKEN+" TEXT  )";
         return query;
     }
 

@@ -7,14 +7,20 @@ package tanvir.busmanagementsystem.MOdelClass;
 public class SeatInfoMC {
 
     private String seatInfoPK;
+    private int schedule_id;
     private String  seatNumber;
     private String  customerName;
     private String  customerMobileNumber;
     private String  customerEmail;
     private String  seatCancellableToken;
 
-    public SeatInfoMC(String seatInfoPK, String seatNumber, String customerName, String customerMobileNumber, String customerEmail, String seatCancellableToken) {
+    public SeatInfoMC() {
+
+    }
+
+    public SeatInfoMC(String seatInfoPK, int schedule_id, String seatNumber, String customerName, String customerMobileNumber, String customerEmail, String seatCancellableToken) {
         this.seatInfoPK = seatInfoPK;
+        this.schedule_id = schedule_id;
         this.seatNumber = seatNumber;
         this.customerName = customerName;
         this.customerMobileNumber = customerMobileNumber;
@@ -28,6 +34,14 @@ public class SeatInfoMC {
 
     public void setSeatInfoPK(String seatInfoPK) {
         this.seatInfoPK = seatInfoPK;
+    }
+
+    public int getSchedule_id() {
+        return schedule_id;
+    }
+
+    public void setSchedule_id(int schedule_id) {
+        this.schedule_id = schedule_id;
     }
 
     public String getSeatNumber() {

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,9 +25,13 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
 
     Context context;
+    ArrayList<String> seatNumber;
+    TextView CounterTextView;
 
-    public RecyclerAdapterToShowSeatList(Context context) {
+    public RecyclerAdapterToShowSeatList(Context context, TextView counterText) {
         this.context = context;
+        this.CounterTextView=counterText;
+        seatNumber=new ArrayList<>();
 
 
     }
@@ -36,7 +41,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.seatlist_recyclerview, parent, false);
 
-        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view, context);
+        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view, context,CounterTextView);
         return recyclerViewHolder;
     }
 
@@ -61,11 +66,13 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
         ArrayList<Integer> text;
         Context context;
+        TextView counterText;
 
 
-        public RecyclerViewHolder(final View view, final Context context) {
+        public RecyclerViewHolder(final View view, final Context context, final TextView counterText) {
             super(view);
             this.text = text;
+            this.counterText=counterText;
 
             this.context = context;
 
@@ -93,7 +100,10 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
                     int position = getAdapterPosition();
 
-                   
+                    String seat = returnSeatNumber(position, 1, context);
+                    seatNumber.add(seat);
+                    CounterTextView.setText(getArrayListAsString());
+                    ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
                     firstSeatEmpty.setVisibility(View.INVISIBLE);
                     firstSeatSelected.setVisibility(View.VISIBLE);
@@ -110,7 +120,10 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
                     int position = getAdapterPosition();
 
-                   
+                    String seat = returnSeatNumber(position, 2, context);
+                    seatNumber.add(seat);
+                    CounterTextView.setText(getArrayListAsString());
+                    ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
                     secondSeatEmpty.setVisibility(View.INVISIBLE);
                     secondSeatSelected.setVisibility(View.VISIBLE);
@@ -127,7 +140,11 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
                     int position = getAdapterPosition();
 
-                   
+                    ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+                    String seat = returnSeatNumber(position, 3, context);
+                    seatNumber.add(seat);
+                    CounterTextView.setText(getArrayListAsString());
 
                     thirdSeatEmpty.setVisibility(View.INVISIBLE);
                     thirdSeatSelected.setVisibility(View.VISIBLE);
@@ -137,7 +154,6 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
             });
 
 
-
             fourthSeatEmpty.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("ResourceType")
                 @Override
@@ -145,7 +161,11 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
                     int position = getAdapterPosition();
 
-                   
+                    ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+                    String seat = returnSeatNumber(position, 4, context);
+                    seatNumber.add(seat);
+                    CounterTextView.setText(getArrayListAsString());
 
                     fourthSeatEmpty.setVisibility(View.INVISIBLE);
                     fourthSeatSelected.setVisibility(View.VISIBLE);
@@ -155,8 +175,6 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
             });
 
 
-
-
             firstSeatSelected.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("ResourceType")
                 @Override
@@ -164,7 +182,12 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
                     int position = getAdapterPosition();
 
-                   
+                    String seat = returnSeatNumber(position, 1, context);
+                    removeFromArraylist(seat);
+                    CounterTextView.setText(getArrayListAsString());
+
+                    ////Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
+
 
                     firstSeatSelected.setVisibility(View.INVISIBLE);
                     firstSeatEmpty.setVisibility(View.VISIBLE);
@@ -180,7 +203,11 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
                     int position = getAdapterPosition();
 
-                   
+                    String seat = returnSeatNumber(position, 2, context);
+                    removeFromArraylist(seat);
+                    CounterTextView.setText(getArrayListAsString());
+
+                    ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
                     secondSeatSelected.setVisibility(View.INVISIBLE);
                     secondSeatEmpty.setVisibility(View.VISIBLE);
@@ -190,7 +217,6 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
             });
 
 
-
             thirdSeatSelected.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("ResourceType")
                 @Override
@@ -198,7 +224,11 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
                     int position = getAdapterPosition();
 
-                   
+                    String seat = returnSeatNumber(position, 3, context);
+                    removeFromArraylist(seat);
+                    CounterTextView.setText(getArrayListAsString());
+
+                    ////Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
                     thirdSeatSelected.setVisibility(View.INVISIBLE);
                     thirdSeatEmpty.setVisibility(View.VISIBLE);
@@ -208,23 +238,57 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
             });
 
 
-
-           fourthSeatSelected.setOnClickListener(new View.OnClickListener() {
+            fourthSeatSelected.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("ResourceType")
                 @Override
                 public void onClick(View v) {
 
                     int position = getAdapterPosition();
 
-                   
+                    String seat = returnSeatNumber(position, 4, context);
+                    removeFromArraylist(seat);
+                    CounterTextView.setText(getArrayListAsString());
 
-                   fourthSeatSelected.setVisibility(View.INVISIBLE);
-                   fourthSeatEmpty.setVisibility(View.VISIBLE);
+                    ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+
+                    fourthSeatSelected.setVisibility(View.INVISIBLE);
+                    fourthSeatEmpty.setVisibility(View.VISIBLE);
 
 
                 }
             });
+
+
+        }
+        public String getArrayListAsString() {
+            String s = "";
+
+            for (int i = 0; i < seatNumber.size(); i++) {
+                s += seatNumber.get(i);
+
+                if (seatNumber.size() != 1 && seatNumber.size() != (i - 1))
+                    s += " , ";
+            }
+            return s;
+        }
+
+        public void removeFromArraylist(String seat) {
+            int position = seatNumber.indexOf(seat);
+            seatNumber.remove(position);
+        }
+
+        public String returnSeatNumber(int position, int seatPOsition, Context context) {
+            char c = (char) (position + 65);
+            String seat = c + Integer.toString(seatPOsition);
+
+
+           /// Toast.makeText(context, seat, Toast.LENGTH_SHORT).show();
+
+            return seat;
+
         }
 
     }
+
 }

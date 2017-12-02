@@ -313,7 +313,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-        Toast.makeText(context, "DB : "+busScheduleInfoMCS.get(0).getBusID(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "DB : "+busScheduleInfoMCS.get(0).getBusID(), Toast.LENGTH_SHORT).show();
         return busScheduleInfoMCS;
 
 

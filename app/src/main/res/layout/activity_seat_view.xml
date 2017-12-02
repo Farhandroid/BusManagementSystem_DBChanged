@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+
     tools:context="tanvir.busmanagementsystem.SeatViewActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/toolbar_layout_bus_seat"
+            />
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/linearLayoutInMA"
