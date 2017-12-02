@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import tanvir.busmanagementsystem.BustListAV;
 import tanvir.busmanagementsystem.MOdelClass.BusINfoMC;
 import tanvir.busmanagementsystem.MOdelClass.BusScheduleInfoMC;
+import tanvir.busmanagementsystem.MOdelClass.SeatInfoMC;
 
 /**
  * Created by USER on 04-Jul-17.
@@ -236,31 +237,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-
         ///Toast.makeText(context, "Database \n" + busScheduleInfoMC.getBusID() + "\n" + busScheduleInfoMC.getBusName() + "\n" + busScheduleInfoMC.getDepartureDate() + "\n" + busScheduleInfoMC.getDepartureTime() + "\n" + busScheduleInfoMC.getArrivalDate() + "\n" + busScheduleInfoMC.getArrivaleTime() + "\n", Toast.LENGTH_LONG).show();
 
-        String selectString = "SELECT * FROM " + TableAttribute.BUS_TABLE+ " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ?";
+        String selectString = "SELECT * FROM " + TableAttribute.BUS_TABLE + " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ?";
 
         Cursor cursor = db.rawQuery(selectString, new String[]{busScheduleInfoMC.getBusID(), busScheduleInfoMC.getBusName()});
 
         ///long result = db.insert(TableAttribute.BUS_SCHEDULE_TABLE,null,contentValues);
 
-        if (cursor.getCount()>0)
-        {
-            String sql1 = "insert into " + TableAttribute.BUS_SCHEDULE_TABLE + " ( " + TableAttribute.COL_BUS_ID + " , " + TableAttribute.COL_BUS_NAME + " , "+ TableAttribute.COL_DEPARTURE_LOCATION + " , "+ TableAttribute.COL_ARRIVAL_LOCATION + " , " + TableAttribute.COL_DEPARTURE_DATE + " , " + TableAttribute.COL_DEPARTUR_TIME + " , " + TableAttribute.COL_ARRIVAL_DATE + " , " + TableAttribute.COL_ARRIVAL_TIME + " ) values( '" + busScheduleInfoMC.getBusID() + "' , '" + busScheduleInfoMC.getBusName()+ "' , '" + busScheduleInfoMC.getDepartureLocation()+ "' , '" + busScheduleInfoMC.getArrivalLocation() + "' , '" + busScheduleInfoMC.getDepartureDate() + "' , '" + busScheduleInfoMC.getDepartureTime() + "' , '" + busScheduleInfoMC.getArrivalDate() + "' , ' " + busScheduleInfoMC.getArrivaleTime() + "')";
+        if (cursor.getCount() > 0) {
+            String sql1 = "insert into " + TableAttribute.BUS_SCHEDULE_TABLE + " ( " + TableAttribute.COL_BUS_ID + " , " + TableAttribute.COL_BUS_NAME + " , " + TableAttribute.COL_DEPARTURE_LOCATION + " , " + TableAttribute.COL_ARRIVAL_LOCATION + " , " + TableAttribute.COL_DEPARTURE_DATE + " , " + TableAttribute.COL_DEPARTUR_TIME + " , " + TableAttribute.COL_ARRIVAL_DATE + " , " + TableAttribute.COL_ARRIVAL_TIME + " ) values( '" + busScheduleInfoMC.getBusID() + "' , '" + busScheduleInfoMC.getBusName() + "' , '" + busScheduleInfoMC.getDepartureLocation() + "' , '" + busScheduleInfoMC.getArrivalLocation() + "' , '" + busScheduleInfoMC.getDepartureDate() + "' , '" + busScheduleInfoMC.getDepartureTime() + "' , '" + busScheduleInfoMC.getArrivalDate() + "' , ' " + busScheduleInfoMC.getArrivaleTime() + "')";
             ///try {
-                db.execSQL(sql1);
+            db.execSQL(sql1);
 
             //} catch (Exception e) {
-               // db.close();
+            // db.close();
             db.close();
-                return true;
+            return true;
             //}
 
 
-        }
-        else
-        {
+        } else {
             db.close();
             return false;
         }
@@ -268,18 +265,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ///String sql1 = "insert into " + TableAttribute.BUS_SCHEDULE_TABLE + " (" + TableAttribute.COL_BUS_ID + " , " + TableAttribute.COL_BUS_NAME + " , " + TableAttribute.COL_DEPARTURE_DATE + " , " + TableAttribute.COL_DEPARTUR_TIME + " , " + TableAttribute.COL_ARRIVAL_DATE + " , " + TableAttribute.COL_ARRIVAL_TIME + ") values(" + busScheduleInfoMC.getBusID() + ",'" + busScheduleInfoMC.getBusName() + ",'" + busScheduleInfoMC.getDepartureDate() + ",'" + busScheduleInfoMC.getDepartureTime() + ",'" + busScheduleInfoMC.getArrivalDate() + ",'" + busScheduleInfoMC.getArrivaleTime() + "')";
 
 
-
-
         //return false;
 
     }
 
-    public ArrayList<BusScheduleInfoMC> getDataFromBusScheduleForRV(String DepartueLocation ,String ArrivalLocation,String DepartureDate)
-    {
+    public ArrayList<BusScheduleInfoMC> getDataFromBusScheduleForRV(String DepartueLocation, String ArrivalLocation, String DepartureDate) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String selectString = "SELECT * FROM " + TableAttribute.BUS_SCHEDULE_TABLE+ " WHERE " + TableAttribute.COL_DEPARTURE_LOCATION + " = ?  AND " + TableAttribute.COL_ARRIVAL_LOCATION + " = ? AND "+ TableAttribute.COL_DEPARTURE_DATE + " = ?";
+        String selectString = "SELECT * FROM " + TableAttribute.BUS_SCHEDULE_TABLE + " WHERE " + TableAttribute.COL_DEPARTURE_LOCATION + " = ?  AND " + TableAttribute.COL_ARRIVAL_LOCATION + " = ? AND " + TableAttribute.COL_DEPARTURE_DATE + " = ?";
 
-        Cursor cursor = db.rawQuery(selectString, new String[]{DepartueLocation, ArrivalLocation,DepartureDate});
+        Cursor cursor = db.rawQuery(selectString, new String[]{DepartueLocation, ArrivalLocation, DepartureDate});
 
 
         ArrayList<BusScheduleInfoMC> busScheduleInfoMCS = new ArrayList<>();
@@ -289,7 +283,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ///Toast.makeText(context, "data found BusScheduleInfoMC DB", Toast.LENGTH_SHORT).show();
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-
 
 
                 BusScheduleInfoMC busScheduleInfoMC = new BusScheduleInfoMC();
@@ -308,37 +301,83 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
 
 
-
         }
-
 
 
         //Toast.makeText(context, "DB : "+busScheduleInfoMCS.get(0).getBusID(), Toast.LENGTH_SHORT).show();
         return busScheduleInfoMCS;
 
 
-
     }
 
-    public BusINfoMC getbuaTypeBusSeatSeatPriceFromDB(String busId , String busName)
-    {
+    public BusINfoMC getbuaTypeBusSeatSeatPriceFromDB(String busId, String busName) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + TableAttribute.COL_BUS_TYPE + " , " + TableAttribute.COL_TOTAL_BUS_SEAT+ " , " + TableAttribute.COL_BUS_SEAT_PRICE + " FROM " + TableAttribute.BUS_TABLE+ " WHERE " + TableAttribute.COL_BUS_ID+ " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? ";
+        String query = "SELECT " + TableAttribute.COL_BUS_TYPE + " , " + TableAttribute.COL_TOTAL_BUS_SEAT + " , " + TableAttribute.COL_BUS_SEAT_PRICE + " FROM " + TableAttribute.BUS_TABLE + " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? ";
 
         Cursor cursor = db.rawQuery(query, new String[]{busId, busName});
         BusINfoMC busINfoMC = null;
 
-        if (cursor.getCount()>0)
-        {
+        if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             String busType = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_TYPE));
-            String totalBusSeat =cursor.getString(cursor.getColumnIndex(TableAttribute.COL_TOTAL_BUS_SEAT));
+            String totalBusSeat = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_TOTAL_BUS_SEAT));
             String busSeatPrice = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_SEAT_PRICE));
 
-            busINfoMC = new BusINfoMC(busType,totalBusSeat,busSeatPrice);
+            busINfoMC = new BusINfoMC(busType, totalBusSeat, busSeatPrice);
         }
-        return  busINfoMC;
+        return busINfoMC;
 
+    }
+
+    public boolean addSeatInDatabase(ArrayList<SeatInfoMC> seatInfoMCS) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean res = true;
+        for (int i = 0; i < seatInfoMCS.size(); i++) {
+            Toast.makeText(context, "Seat info size in db : " + Integer.toString(seatInfoMCS.size()), Toast.LENGTH_SHORT).show();
+            String sql1 = "insert into " + TableAttribute.SEAT_TABLE + " ( " + TableAttribute.COL_SCHEDULE_ID + " , " + TableAttribute.COL_SEAT_NUMBER + " , " + TableAttribute.COL_CUSTOMER_NAME + " , " + TableAttribute.COL_CUSTOMER_MOBILE_NUMBER + " , " + TableAttribute.COL_CUSTOMER_EMAIL + " , " + TableAttribute.COL_SEAT_CANCELLABLE_TOKEN + " ) values( '" + seatInfoMCS.get(i).getSchedule_id() + "' , '" + seatInfoMCS.get(i).getSeatNumber() + "' , '" + seatInfoMCS.get(i).getCustomerName() + "' , '" + seatInfoMCS.get(i).getCustomerMobileNumber() + "' , '" + seatInfoMCS.get(i).getCustomerEmail() + "' , '" + seatInfoMCS.get(i).getSeatCancellableToken() + "')";
+
+
+            try {
+                db.execSQL(sql1);
+
+            } catch (Exception e) {
+                res = false;
+            }
+
+        }
+        return res;
+    }
+
+    public ArrayList<SeatInfoMC> getSeatUsingScheduleId(int scheduleId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TableAttribute.SEAT_TABLE + " WHERE " + TableAttribute.COL_SCHEDULE_ID + " = ?  ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(scheduleId)});
+
+        ArrayList<SeatInfoMC> seatInfoMCS = new ArrayList<>();
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Integer scheduleid = cursor.getInt(cursor.getColumnIndex(TableAttribute.COL_SCHEDULE_ID));
+                String seatNumber = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_SEAT_NUMBER));
+                String customerName = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_CUSTOMER_NAME));
+
+                String customerMobileNumber = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_CUSTOMER_MOBILE_NUMBER));
+                String customerEmail = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_CUSTOMER_EMAIL));
+                String seatCancelableToken = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_SEAT_CANCELLABLE_TOKEN));
+
+                SeatInfoMC seatInfoMC = new SeatInfoMC(scheduleid, seatNumber, customerName, customerMobileNumber, customerEmail, seatCancelableToken);
+
+                seatInfoMCS.add(seatInfoMC);
+
+                cursor.moveToNext();
+            }
+
+
+        }
+
+        return seatInfoMCS;
     }
 
 

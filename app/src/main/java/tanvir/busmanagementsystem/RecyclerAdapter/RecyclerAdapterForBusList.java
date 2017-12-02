@@ -107,7 +107,11 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
 
             Intent intent = new Intent(context, SeatViewActivity.class);
+            intent.putExtra("seatPrice",busINfoMCArrayList.get(position).getBusSeatPrice());
 
+            //Toast.makeText(context, "seatPrice RV : "+busINfoMCArrayList.get(position).getBusSeatPrice(), Toast.LENGTH_SHORT).show();
+
+            intent.putExtra("scheduleId",busScheduleInfoMCS.get(position).getBusScheduleInfoPK());
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             context.startActivity(intent);
 

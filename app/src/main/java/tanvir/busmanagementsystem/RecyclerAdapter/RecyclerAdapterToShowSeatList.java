@@ -2,18 +2,22 @@ package tanvir.busmanagementsystem.RecyclerAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import tanvir.busmanagementsystem.BuyTicket;
+import tanvir.busmanagementsystem.MOdelClass.SeatInfoMC;
 import tanvir.busmanagementsystem.R;
 
 /**
@@ -27,11 +31,19 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
     Context context;
     ArrayList<String> seatNumber;
     TextView CounterTextView;
+    Button buyTicket;
+    int scheduleId;
+    String busSeatPrice;
+    ArrayList<SeatInfoMC> seatInfoMCS;
 
-    public RecyclerAdapterToShowSeatList(Context context, TextView counterText) {
+    public RecyclerAdapterToShowSeatList(Context context, TextView counterText,Button buyTicket,int scheduleId,String busSeatPrice,ArrayList<SeatInfoMC> seatInfoMCS) {
         this.context = context;
         this.CounterTextView=counterText;
         seatNumber=new ArrayList<>();
+        this.buyTicket=buyTicket;
+        this.scheduleId=scheduleId;
+        this.busSeatPrice=busSeatPrice;
+        this.seatInfoMCS=seatInfoMCS;
 
 
     }
@@ -41,7 +53,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.seatlist_recyclerview, parent, false);
 
-        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view, context,CounterTextView);
+        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view, context,CounterTextView,buyTicket,seatInfoMCS);
         return recyclerViewHolder;
     }
 
@@ -49,6 +61,64 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         ///holder.firstSeatEmpty.setImageDrawable(context.getDrawable(text.get(position)));
+
+        if (seatInfoMCS.size() > 0) {
+
+            /// Toast.makeText(context, "Enter OBVH", Toast.LENGTH_SHORT).show();
+
+            for (int i = 0; i < seatInfoMCS.size(); i++) {
+                String seat = seatInfoMCS.get(i).getSeatNumber();
+
+                char c = seat.charAt(0);
+
+                int row = c - 65;
+
+                if (row == position) {
+
+                    char d = seat.charAt(1);
+                    int asciiValue1 = (int) c;
+                    ///int seatNum = (int) d;
+
+                    int seatNum = Character.getNumericValue(d);
+
+
+                    /// Toast.makeText(context, "c = " + c + "\nd = " + d + "\nasci 1 = " + Integer.toString(asciiValue1) + "\nrow = " + Integer.toString(row
+                    /// ) + "\nseatnum = " + Integer.toString(seatNum), Toast.LENGTH_LONG).show();
+
+
+                    ///if (position == row) {
+                    if (seatNum == 1) {
+                        holder.firstSeatBooked.setVisibility(View.VISIBLE);
+                        holder.firstSeatEmpty.setVisibility(View.INVISIBLE);
+
+                    } else if (seatNum == 2) {
+                        holder.secondSeatBooked.setVisibility(View.VISIBLE);
+                        holder.secondSeatEmpty.setVisibility(View.INVISIBLE);
+
+                    } else if (seatNum == 3) {
+                        holder.thirdSeatBooked.setVisibility(View.VISIBLE);
+                        holder.thirdSeatEmpty.setVisibility(View.INVISIBLE);
+
+                    } else {
+                        holder.fourthSeatBooked.setVisibility(View.VISIBLE);
+                        holder.fourthSeatEmpty.setVisibility(View.INVISIBLE);
+                    }
+
+                }
+
+
+                /// }
+
+            }
+            ///seatNumber.clear();
+
+        }
+        ///else
+        ///seatNumber.clear();
+
+        if (position==9)
+            seatNumber.clear();
+
 
     }
 
@@ -67,14 +137,20 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
         ArrayList<Integer> text;
         Context context;
         TextView counterText;
+        Button buyTicket;
+        ArrayList<SeatInfoMC> seatInfoMCS;
 
 
-        public RecyclerViewHolder(final View view, final Context context, final TextView counterText) {
+        public RecyclerViewHolder(final View view, final Context context, final TextView counterText,Button buyTicket,ArrayList<SeatInfoMC> seatInfoMCS) {
             super(view);
             this.text = text;
             this.counterText=counterText;
 
             this.context = context;
+
+            this.buyTicket=buyTicket;
+
+            this.seatInfoMCS=seatInfoMCS;
 
             firstSeatEmpty = view.findViewById(R.id.firstSeatEmpty);
             secondSeatEmpty = view.findViewById(R.id.secondSeatEmpty);
@@ -259,6 +335,20 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                 }
             });
 
+            buyTicket.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceType")
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, BuyTicket.class);
+                    intent.putExtra("scheduleId",scheduleId);
+                    intent.putExtra("seatNumber", seatNumber);
+                    intent.putExtra("seatPrice", busSeatPrice);
+                    context.startActivity(intent);
+
+
+                }
+            });
+
 
         }
         public String getArrayListAsString() {
@@ -267,7 +357,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
             for (int i = 0; i < seatNumber.size(); i++) {
                 s += seatNumber.get(i);
 
-                if (seatNumber.size() != 1 && seatNumber.size() != (i - 1))
+                if (seatNumber.size() != 1 && seatNumber.size() != (i + 1))
                     s += " , ";
             }
             return s;

@@ -14,11 +14,21 @@ public class SeatInfoMC {
     private String  customerEmail;
     private String  seatCancellableToken;
 
+    public SeatInfoMC(String seatInfoPK, int schedule_id, String seatNumber, String customerName, String customerMobileNumber, String customerEmail, String seatCancellableToken) {
+        this.seatInfoPK = seatInfoPK;
+        this.schedule_id = schedule_id;
+        this.seatNumber = seatNumber;
+        this.customerName = customerName;
+        this.customerMobileNumber = customerMobileNumber;
+        this.customerEmail = customerEmail;
+        this.seatCancellableToken = seatCancellableToken;
+    }
+
     public SeatInfoMC() {
 
     }
 
-    public SeatInfoMC(String seatInfoPK, int schedule_id, String seatNumber, String customerName, String customerMobileNumber, String customerEmail, String seatCancellableToken) {
+    public SeatInfoMC( int schedule_id, String seatNumber, String customerName, String customerMobileNumber, String customerEmail, String seatCancellableToken) {
         this.seatInfoPK = seatInfoPK;
         this.schedule_id = schedule_id;
         this.seatNumber = seatNumber;
