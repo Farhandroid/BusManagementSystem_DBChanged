@@ -159,7 +159,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         String departureLocation = departureLocationET.getText().toString();
         String arrivalLocation = arrivalLocationET.getText().toString();
 
-        boolean res = getArrivalTime(busId,busName,departureTime);
+        boolean res = getArrivalTime(busId,busName,departureTime,departureDate);
 
 
 
@@ -170,7 +170,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
                 TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : departure time and arrival time can't be same ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
             else if (res==false)
             {
-                TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : This time slot is already used ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                ///TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : This time slot is already used ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
             }
             else {
                 boolean result = compareTime(departureTime, arrivalTime,departureDate,arrivalDate);
@@ -326,9 +326,9 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         return result;
     }
 
-    public boolean getArrivalTime(String busId , String busName,String departureTime)
+    public boolean getArrivalTime(String busId , String busName,String departureTime,String departureDate)
     {
-        ArrayList<String> busArrivalTimeInfo = databaseHelper.getArrivalTimeFromcheduleTable(busId,busName);
+        ArrayList<String> busArrivalTimeInfo = databaseHelper.getArrivalTimeFromcheduleTable(busId,busName,departureDate);
 
         ArrayList<Integer> busArrivalTimeInfoINt = new ArrayList<>();
 
@@ -345,9 +345,13 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
 
                 busArrivalTimeInfoINt.add(Integer.parseInt(s));
 
-                ///Toast.makeText(this, "val : "+busArrivalTimeInfo.get(i), Toast.LENGTH_SHORT).show();
+               /// Toast.makeText(this, "val : "+Integer.toString(Integer.parseInt(s)), Toast.LENGTH_SHORT).show();
             }
         }
+        /*else
+        {
+            Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
+        }*/
 
         if (busArrivalTimeInfo.size()>0)
         {
@@ -355,11 +359,14 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
             s=s.replaceAll("\\s+","");
             int arvl = Integer.parseInt(s);
 
+            ///Toast.makeText(this, "arr : "+Integer.toString(arvl), Toast.LENGTH_SHORT).show();
+
 
             for (int i=0;i<busArrivalTimeInfoINt.size();i++)
             {
                 if (arvl<=busArrivalTimeInfoINt.get(i))
                 {
+                    TastyToast.makeText(getApplicationContext(), "This bus have arrival time on "+departureDate+" at "+busArrivalTimeInfo.get(i)+"\n so bus can't be scheduled in this departure time : "+departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     res=false;
                 }
 
@@ -368,8 +375,6 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
 
         }
         return res;
-
-
 
     }
 }
