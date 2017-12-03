@@ -380,5 +380,87 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return seatInfoMCS;
     }
 
+    public boolean checkIfBusSeatAvailable(int scheduleId)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TableAttribute.SEAT_TABLE + " WHERE " + TableAttribute.COL_SCHEDULE_ID + " = ?  ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(scheduleId)});
+
+        if (cursor.getCount()>0)
+            return  true;
+        else
+            return false;
+    }
+
+
+    public boolean deleTeBusSchedule(int scheduleId)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        boolean res = true;
+        ///int result = db.delete(TableAttribute.BUS_SCHEDULE_TABLE, TableAttribute.COL_SCHEDULE_ID, scheduleId);
+        ///db.close();
+
+
+        String sql1 = "Delete from " + TableAttribute.BUS_SCHEDULE_TABLE  + " WHERE " + TableAttribute.COL_SCHEDULE_ID + " = "+scheduleId;
+
+
+        try {
+            db.execSQL(sql1);
+            db.close();
+
+        } catch (Exception e) {
+
+            res = false;
+        }
+
+        return res;
+
+    }
+
+    public boolean cancelTicket(String token)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        boolean res = true;
+
+
+        String query = "SELECT * FROM " + TableAttribute.SEAT_TABLE + " WHERE " + TableAttribute.COL_SEAT_CANCELLABLE_TOKEN + " = ?  ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(token)});
+
+        if (cursor.getCount()>0)
+        {
+            db.execSQL("DELETE FROM " + TableAttribute.SEAT_TABLE+ " WHERE "+TableAttribute.COL_SEAT_CANCELLABLE_TOKEN+"='"+token.trim()+"'");
+            db.close();
+        }
+        else
+            res=false;
+
+
+        return res;
+
+
+    }
+
+    public ArrayList<String> getArrivalTimeFromcheduleTable(String busId , String busName)
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT "+ TableAttribute.COL_ARRIVAL_TIME + " FROM " + TableAttribute.BUS_SCHEDULE_TABLE+ " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{busId, busName});
+        ArrayList<String> arrivalInfo = new ArrayList<>();
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String arrival = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_ARRIVAL_TIME));
+
+            arrivalInfo.add(arrival);
+        }
+        return arrivalInfo;
+    }
+
 
 }

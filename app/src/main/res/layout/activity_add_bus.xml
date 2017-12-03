@@ -53,6 +53,7 @@
                 android:layout_marginTop="40dp">
 
                 <EditText
+                    android:inputType="textCapSentences"
                     android:id="@+id/busIdET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,6 +68,7 @@
                 android:layout_centerHorizontal="true">
 
                 <EditText
+                    android:inputType="textCapSentences"
                     android:id="@+id/busNameET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -81,6 +83,7 @@
                 android:layout_centerHorizontal="true">
 
                 <EditText
+                    android:inputType="numberDecimal"
                     android:id="@+id/busSeatPriceET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -103,6 +106,7 @@
                     android:textSize="20sp" />
 
                 <Spinner
+                    android:inputType="textCapSentences"
                     android:layout_marginLeft="20dp"
                     android:id="@+id/busSeatSP"
                     android:layout_width="match_parent"
@@ -129,6 +133,7 @@
 
 
                 <Spinner
+                    android:inputType="textCapSentences"
                     android:id="@+id/busTypeSP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,7 +148,7 @@
 
         <Button
             android:onClick="addBusInDB"
-            android:background="@drawable/button_shape_default_rounded"
+            android:background="@color/colorPrimaryDark"
             android:layout_marginTop="10dp"
             android:text="Add"
             android:layout_width="match_parent"

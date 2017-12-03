@@ -345,6 +345,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     intent.putExtra("scheduleId",scheduleId);
                     intent.putExtra("seatNumber", seatNumber);
                     intent.putExtra("seatPrice", busSeatPrice);
+                    intent.putExtra("totalSeat", totalseat);
                     context.startActivity(intent);
 
 

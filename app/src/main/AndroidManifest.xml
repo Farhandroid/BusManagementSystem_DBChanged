@@ -28,8 +28,10 @@
         <activity android:name=".AddBusScheDuleActivity" />
         <activity
             android:name=".AdminActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".BuyTicket" />
+        <activity android:name=".TicketCancel"
             android:theme="@style/AppTheme"></activity>
-        <activity android:name=".BuyTicket"></activity>
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@
             />
         <item
             android:id="@+id/login"
-            android:title="login"
+            android:title="Admin"
             />
         <item
             android:id="@+id/cancelTicket"

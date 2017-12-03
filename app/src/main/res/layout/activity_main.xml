@@ -51,7 +51,6 @@
                         android:layout_marginTop="10dp"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
-                        android:onClick="clickedOnFrom"
                         android:orientation="horizontal">
 
 

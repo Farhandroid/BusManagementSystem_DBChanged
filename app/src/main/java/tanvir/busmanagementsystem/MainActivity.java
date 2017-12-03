@@ -79,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.left_in,R.anim.left_out);
                         finish();
                         break;
+                    case R.id.cancelTicket:
+                        Intent myIntent2 = new Intent(MainActivity.this, TicketCancel.class);
+                        item.setChecked(true);
+                        drawerLayout.closeDrawers();
+                        myIntent2.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        MainActivity.this.startActivity(myIntent2);
+                        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                        finish();
+                        break;
 
                 }
                 return  true;

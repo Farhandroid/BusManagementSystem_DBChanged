@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.sdsmdg.tastytoast.TastyToast;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -104,21 +106,27 @@ public class AddBusActivity extends AppCompatActivity implements AdapterView.OnI
         String busId = busIdET.getText().toString();
         String busSeatPrice = seatPriceET.getText().toString();
 
-        BusINfoMC busINfoMC = new BusINfoMC(busName,busId,busType,totalBusSeat,busSeatPrice);
+        if (busName.length()>0 && busId.length()>0 && busSeatPrice.length()>0)
+        {
+            BusINfoMC busINfoMC = new BusINfoMC(busName,busId,busType,totalBusSeat,busSeatPrice);
 
-       /// Toast.makeText(this, busName+"\n"+busId+"\n"+busType+"\n"+totalBusSeat+"\n"+busSeatPrice+"\n", Toast.LENGTH_LONG).show();
+            /// Toast.makeText(this, busName+"\n"+busId+"\n"+busType+"\n"+totalBusSeat+"\n"+busSeatPrice+"\n", Toast.LENGTH_LONG).show();
 
-        Boolean aBoolean = databaseHelper.addBusInDatabase(busINfoMC);
+            Boolean aBoolean = databaseHelper.addBusInDatabase(busINfoMC);
 
-        if (aBoolean)
-            Toast.makeText(this, "SckSex", Toast.LENGTH_SHORT).show();
+            if (aBoolean)
+            {
+                TastyToast.makeText(getApplicationContext(), "Bus added successfully  ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+                startAdminActivity();
+            }
+
+            else
+                TastyToast.makeText(getApplicationContext(), "Bus Can't be added\n possible reason Bus id and bus name already taken\n  ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+
+
+        }
         else
-            Toast.makeText(this, "Fuck", Toast.LENGTH_SHORT).show();
-
-
-
-
-
+            TastyToast.makeText(getApplicationContext(), "PLease fill up all field ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
 
 
     }
@@ -127,6 +135,12 @@ public class AddBusActivity extends AppCompatActivity implements AdapterView.OnI
     {
         super.onBackPressed();
 
+        startAdminActivity();
+
+    }
+
+    public void startAdminActivity()
+    {
         Intent myIntent = new Intent(this, AdminActivity.class);
         myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         this.startActivity(myIntent);

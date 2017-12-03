@@ -4,19 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sdsmdg.tastytoast.TastyToast;
+
 import java.util.ArrayList;
 
-import tanvir.busmanagementsystem.BustListAV;
+import tanvir.busmanagementsystem.Database.DatabaseHelper;
 import tanvir.busmanagementsystem.MOdelClass.BusINfoMC;
 import tanvir.busmanagementsystem.MOdelClass.BusScheduleInfoMC;
 import tanvir.busmanagementsystem.R;
@@ -86,7 +86,7 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
         LinearLayout linearLayout;
 
-        public RecyclerViewHolder(View view, final Context context, final ArrayList<BusINfoMC> busINfoMCS,ArrayList<BusScheduleInfoMC> busScheduleInfoMCS) {
+        public RecyclerViewHolder(View view, final Context context, final ArrayList<BusINfoMC> busINfoMCS, final ArrayList<BusScheduleInfoMC> busScheduleInfoMCS) {
             super(view);
             this.busINfoMCArrayList = busINfoMCS;
             this.busScheduleInfoMCS=busScheduleInfoMCS;
@@ -117,13 +117,13 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
 
                        View dialogView;
-                       AlertDialog alertDialog;
+                       final AlertDialog alertDialog;
 
                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
                        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 
                        ///LayoutInflater inflater = context.getLayoutInflater();
-                       dialogView = inflater.inflate(R.layout.bus_onlongclick_for_admon, null);
+                       dialogView = inflater.inflate(R.layout.bus_onlongclick_for_admin, null);
                        dialogBuilder.setView(dialogView);
                        alertDialog = dialogBuilder.create();
                        alertDialog.show();
@@ -134,6 +134,41 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
                        delete.setOnClickListener(new View.OnClickListener() {
                            @Override
                            public void onClick(View v) {
+
+                               int scheduleId  = busScheduleInfoMCS.get(getAdapterPosition()).getBusScheduleInfoPK();
+
+                               DatabaseHelper databaseHelper = new DatabaseHelper(context);
+
+                               Boolean aBoolean = databaseHelper.checkIfBusSeatAvailable(scheduleId);
+
+                               if (aBoolean)
+                               {
+                                   TastyToast.makeText(context, "You can't delete this schedule\n because this bus isn't empty ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                                    alertDialog.dismiss();
+                               }
+                               else
+                               {
+                                   boolean b = databaseHelper.deleTeBusSchedule(scheduleId);
+
+                                   if (b)
+                                   {
+                                       alertDialog.dismiss();
+                                       busScheduleInfoMCS.remove(getAdapterPosition());
+                                       busINfoMCS.remove(getAdapterPosition());
+                                       notifyItemRemoved(getAdapterPosition());
+                                       notifyItemRangeChanged(getAdapterPosition(),busScheduleInfoMCS.size());
+                                       TastyToast.makeText(context, "Delete success", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+
+                                   }
+                                   else
+                                   {
+                                       alertDialog.dismiss();
+                                       TastyToast.makeText(context, "Delete failed", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+
+                                   }
+
+                               }
+
 
                            }
                        });
