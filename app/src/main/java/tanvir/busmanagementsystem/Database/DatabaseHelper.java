@@ -442,13 +442,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<String> getArrivalTimeFromcheduleTable(String busId , String busName,String arrivalDate)
+    public ArrayList<String> getArrivalTimeFromcheduleTable(String busId , String busName,String departureDate)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT "+ TableAttribute.COL_ARRIVAL_TIME + " FROM " + TableAttribute.BUS_SCHEDULE_TABLE+ " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? AND "+ TableAttribute.COL_ARRIVAL_DATE + " = ? ";
 
-        Cursor cursor = db.rawQuery(query, new String[]{busId, busName,arrivalDate});
+        Cursor cursor = db.rawQuery(query, new String[]{busId, busName,departureDate});
         ArrayList<String> arrivalInfo = new ArrayList<>();
 
         if (cursor.getCount() > 0) {

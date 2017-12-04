@@ -21,14 +21,15 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
                 android:layout_marginLeft="90dp"
+                android:fontFamily="serif"
+
+                android:text="Buy"
                 android:textColor="#FFFFFF"
                 android:textSize="25sp"
-
-                android:layout_width="wrap_content"
-                android:text="Buy"
-                android:textStyle="bold"
-                android:layout_height="wrap_content" />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_marginLeft="5dp"
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:fontFamily="serif"
                 android:layout_marginLeft="90dp"
                 android:textColor="#FFFFFF"
                 android:textSize="25sp"
@@ -57,10 +59,11 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:fontFamily="serif"
                 android:id="@+id/selectedSeatTV"
                 android:layout_marginLeft="5dp"
                 android:textColor="#FFFFFF"
-                android:textSize="27sp"
+                android:textSize="25sp"
                 android:layout_width="wrap_content"
                 android:text="A1 ,A2"
                 android:layout_height="wrap_content" />
@@ -76,6 +79,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:fontFamily="serif"
                 android:layout_marginLeft="90dp"
                 android:textColor="#FFFFFF"
                 android:textSize="25sp"
@@ -85,10 +89,11 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:fontFamily="serif"
                 android:id="@+id/totalSeatPriceTV"
                 android:layout_marginLeft="5dp"
                 android:textColor="#FFFFFF"
-                android:textSize="27sp"
+                android:textSize="25sp"
                 android:layout_width="wrap_content"
                 android:text="450/-"
                 android:layout_height="wrap_content" />
@@ -157,6 +162,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:fontFamily="serif"
                 android:layout_marginTop="5dp"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
@@ -171,6 +177,7 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
+                android:fontFamily="serif"
                 android:layout_width="wrap_content"
                 android:text="45678"
                 android:layout_height="wrap_content" />
@@ -179,6 +186,7 @@
         </LinearLayout>
 
         <Button
+            android:fontFamily="serif"
 
             android:onClick="addSeatInfoInDatabase"
             android:layout_marginTop="10dp"

@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sdsmdg.tastytoast.TastyToast;
+
 import java.util.ArrayList;
 
 import tanvir.busmanagementsystem.BuyTicket;
@@ -179,12 +181,21 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     int position = getAdapterPosition();
 
                     String seat = returnSeatNumber(position, 1, context);
-                    seatNumber.add(seat);
-                    CounterTextView.setText(getArrayListAsString());
-                    ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
+                    if (seatNumber.size()<4)
+                    {
+                        seatNumber.add(seat);
+                        CounterTextView.setText(getArrayListAsString());
+                        ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
-                    firstSeatEmpty.setVisibility(View.INVISIBLE);
-                    firstSeatSelected.setVisibility(View.VISIBLE);
+                        firstSeatEmpty.setVisibility(View.INVISIBLE);
+                        firstSeatSelected.setVisibility(View.VISIBLE);
+
+                    }
+                    else
+                    {
+                        TastyToast.makeText(context, "You can't select more than four Seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                    }
+
 
 
                 }
@@ -199,12 +210,23 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     int position = getAdapterPosition();
 
                     String seat = returnSeatNumber(position, 2, context);
-                    seatNumber.add(seat);
-                    CounterTextView.setText(getArrayListAsString());
-                    ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
-                    secondSeatEmpty.setVisibility(View.INVISIBLE);
-                    secondSeatSelected.setVisibility(View.VISIBLE);
+                    if (seatNumber.size()<4)
+                    {
+                        seatNumber.add(seat);
+                        CounterTextView.setText(getArrayListAsString());
+                        ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+                        secondSeatEmpty.setVisibility(View.INVISIBLE);
+                        secondSeatSelected.setVisibility(View.VISIBLE);
+
+                    }
+                    else
+                    {
+                        TastyToast.makeText(context, "You can't select more than four Seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                    }
+
+
 
 
                 }
@@ -221,11 +243,20 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
                     String seat = returnSeatNumber(position, 3, context);
-                    seatNumber.add(seat);
-                    CounterTextView.setText(getArrayListAsString());
+                    if (seatNumber.size()<4)
+                    {
+                        seatNumber.add(seat);
+                        CounterTextView.setText(getArrayListAsString());
 
-                    thirdSeatEmpty.setVisibility(View.INVISIBLE);
-                    thirdSeatSelected.setVisibility(View.VISIBLE);
+                        thirdSeatEmpty.setVisibility(View.INVISIBLE);
+                        thirdSeatSelected.setVisibility(View.VISIBLE);
+
+                    }
+                    else
+                    {
+                        TastyToast.makeText(context, "You can't select more than four Seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                    }
+
 
 
                 }
@@ -242,11 +273,20 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
                     String seat = returnSeatNumber(position, 4, context);
-                    seatNumber.add(seat);
-                    CounterTextView.setText(getArrayListAsString());
+                    if (seatNumber.size()<4)
+                    {
+                        seatNumber.add(seat);
+                        CounterTextView.setText(getArrayListAsString());
 
-                    fourthSeatEmpty.setVisibility(View.INVISIBLE);
-                    fourthSeatSelected.setVisibility(View.VISIBLE);
+                        fourthSeatEmpty.setVisibility(View.INVISIBLE);
+                        fourthSeatSelected.setVisibility(View.VISIBLE);
+
+                    }
+                    else
+                    {
+                        TastyToast.makeText(context, "You can't select more than four Seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                    }
+
 
 
                 }
@@ -346,7 +386,12 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     intent.putExtra("seatNumber", seatNumber);
                     intent.putExtra("seatPrice", busSeatPrice);
                     intent.putExtra("totalSeat", totalseat);
-                    context.startActivity(intent);
+                    if (seatNumber.size()>0)
+                    {
+                        context.startActivity(intent);
+                    }
+                    else
+                        TastyToast.makeText(context, "You didn't select any seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
 
 
                 }
@@ -369,6 +414,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
         public void removeFromArraylist(String seat) {
             int position = seatNumber.indexOf(seat);
             seatNumber.remove(position);
+
         }
 
         public String returnSeatNumber(int position, int seatPOsition, Context context) {

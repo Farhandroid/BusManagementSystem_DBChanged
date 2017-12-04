@@ -159,38 +159,44 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         String departureLocation = departureLocationET.getText().toString();
         String arrivalLocation = arrivalLocationET.getText().toString();
 
-        boolean res = getArrivalTime(busId,busName,departureTime,arrivalDate);
+        boolean res = getArrivalTime(busId, busName, departureTime, departureDate);
 
 
         if (busId.length() > 0 && busName.length() > 0 && departureDate.length() > 0 && departureTime.length() > 0 && arrivalDate.length() > 0 && arrivalTime.length() > 0 && departureLocation.length() > 0 && arrivalLocation.length() > 0) {
-            if (new String(departureDate).equals(arrivalDate) && new String(departureTime).equals(arrivalTime))
 
-                TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : departure time and arrival time can't be same ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+            if (departureLocation.equals(arrivalLocation)) {
+                TastyToast.makeText(getApplicationContext(), "Bus can't travel in same place ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
 
-            else if (res==false)
-            {
-                ///TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : This time slot is already used ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-            }
-            else {
-                boolean result = compareTime(departureTime, arrivalTime,departureDate,arrivalDate);
+            } else {
 
+                if (new String(departureDate).equals(arrivalDate) && new String(departureTime).equals(arrivalTime))
 
-                if (result) {
-                    BusScheduleInfoMC busScheduleInfoMC = new BusScheduleInfoMC(busId, busName, departureLocation, arrivalLocation, departureDate, departureTime, arrivalDate, arrivalTime);
+                    TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : departure time and arrival time can't be same ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                    ///Toast.makeText(this, busName+"\n"+busId+"\n"+departureDate+"\n"+departureTime+"\n"+arrivalDate+"\n"+arrivalTime+"\n", Toast.LENGTH_LONG).show();
-
-                    Boolean aBoolean = databaseHelper.addBusScheduleInDatabase(busScheduleInfoMC);
-
-                    if (aBoolean) {
-                        TastyToast.makeText(getApplicationContext(), "Bus Scheduled successfully  ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
-                        startAdminActivity();
-                    } else
-                        TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n possible reason :  This bus in't added\n Please add the bus first then try again  ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-
-
+                else if (res == false) {
+                    ///TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : This time slot is already used ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else {
-                    TastyToast.makeText(getApplicationContext(), "Arril time can't be lower than departure time", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                    boolean result = compareTime(departureTime, arrivalTime, departureDate, arrivalDate);
+
+
+                    if (result) {
+                        BusScheduleInfoMC busScheduleInfoMC = new BusScheduleInfoMC(busId, busName, departureLocation, arrivalLocation, departureDate, departureTime, arrivalDate, arrivalTime);
+
+                        ///Toast.makeText(this, busName+"\n"+busId+"\n"+departureDate+"\n"+departureTime+"\n"+arrivalDate+"\n"+arrivalTime+"\n", Toast.LENGTH_LONG).show();
+
+                        Boolean aBoolean = databaseHelper.addBusScheduleInDatabase(busScheduleInfoMC);
+
+                        if (aBoolean) {
+                            TastyToast.makeText(getApplicationContext(), "Bus Scheduled successfully  ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+                            startAdminActivity();
+                        } else
+                            TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n possible reason :  This bus in't added\n Please add the bus first then try again  ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+
+
+                    } else {
+                        TastyToast.makeText(getApplicationContext(), "Arril time can't be lower than departure time", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                    }
+
                 }
 
             }
@@ -289,7 +295,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
 
     }
 
-    public boolean compareTime(String departureTime, String arrivalTime,String departureDate,String arrivalDate) {
+    public boolean compareTime(String departureTime, String arrivalTime, String departureDate, String arrivalDate) {
 
         boolean result = true;
 
@@ -325,26 +331,23 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         return result;
     }
 
-    public boolean getArrivalTime(String busId , String busName,String departureTime,String arrivalDate)
-    {
-        ArrayList<String> busArrivalTimeInfo = databaseHelper.getArrivalTimeFromcheduleTable(busId,busName,arrivalDate);
+    public boolean getArrivalTime(String busId, String busName, String departureTime, String departureDate) {
+        ArrayList<String> busArrivalTimeInfo = databaseHelper.getArrivalTimeFromcheduleTable(busId, busName, departureDate);
 
         ArrayList<Integer> busArrivalTimeInfoINt = new ArrayList<>();
 
         boolean res = true;
 
-        if (busArrivalTimeInfo.size()>0)
-        {
+        if (busArrivalTimeInfo.size() > 0) {
 
 
-            for (int i=0;i<busArrivalTimeInfo.size();i++)
-            {
-                String s = busArrivalTimeInfo.get(i).replace(":","");
-                s=s.replaceAll("\\s+","");
+            for (int i = 0; i < busArrivalTimeInfo.size(); i++) {
+                String s = busArrivalTimeInfo.get(i).replace(":", "");
+                s = s.replaceAll("\\s+", "");
 
                 busArrivalTimeInfoINt.add(Integer.parseInt(s));
 
-               /// Toast.makeText(this, "val : "+Integer.toString(Integer.parseInt(s)), Toast.LENGTH_SHORT).show();
+                /// Toast.makeText(this, "val : "+Integer.toString(Integer.parseInt(s)), Toast.LENGTH_SHORT).show();
             }
         }
         /*else
@@ -352,21 +355,18 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
             Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
         }*/
 
-        if (busArrivalTimeInfo.size()>0)
-        {
-            String s = departureTime.replace(":","");
-            s=s.replaceAll("\\s+","");
+        if (busArrivalTimeInfo.size() > 0) {
+            String s = departureTime.replace(":", "");
+            s = s.replaceAll("\\s+", "");
             int arvl = Integer.parseInt(s);
 
             ///Toast.makeText(this, "arr : "+Integer.toString(arvl), Toast.LENGTH_SHORT).show();
 
 
-            for (int i=0;i<busArrivalTimeInfoINt.size();i++)
-            {
-                if (arvl<=busArrivalTimeInfoINt.get(i))
-                {
-                    TastyToast.makeText(getApplicationContext(), "This bus have arrival time on "+arrivalDate+" at "+busArrivalTimeInfo.get(i)+"\n so bus can't be scheduled in this departure time : "+departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    res=false;
+            for (int i = 0; i < busArrivalTimeInfoINt.size(); i++) {
+                if (arvl <= busArrivalTimeInfoINt.get(i)) {
+                    TastyToast.makeText(getApplicationContext(), "This bus have arrival time on " + departureDate + " at " + busArrivalTimeInfo.get(i) + "\n so bus can't be scheduled in this departure time : " + departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    res = false;
                 }
 
             }

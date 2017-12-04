@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +63,8 @@ public class BustListAV extends AppCompatActivity {
         arrivalLocationTV.setText(arrivalLocation);
         departureDateTV.setText(departureDate);
 
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.emptyLL);
+
         ///Toast.makeText(this, " departureLocation : "+departureLocation+"\narrivalLocation"+arrivalLocation+"\ndepartureDate "+departureDate , Toast.LENGTH_SHORT).show();
 
         //ArrayList<BusINfoMC> busINfoMCArrayList = databaseHelper.getBusListFromBusTable(startFrom, destination, departureDate);
@@ -71,19 +75,28 @@ public class BustListAV extends AppCompatActivity {
 
         ///new retriveDataFromDatabase().execute();
         retriveData();
-
-
-
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        adapter = new RecyclerAdapterForBusList(this, busINfoMCArrayList, busScheduleInfoMCS);
+        if (busScheduleInfoMCS.size()>0)
+        {
+            adapter = new RecyclerAdapterForBusList(this, busINfoMCArrayList, busScheduleInfoMCS);
 
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+            layoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(true);
 
-        recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);
+
+
+        }
+        else
+        {
+            recyclerView.setVisibility(View.GONE);
+            linearLayout.setVisibility(View.VISIBLE);
+        }
+
+
+
 
         //} else
         ///TastyToast.makeText(getApplicationContext(), "Sorry , No trip founded ", TastyToast.LENGTH_SHORT, TastyToast.ERROR);

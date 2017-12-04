@@ -129,7 +129,7 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
                        alertDialog.show();
 
                        TextView delete = dialogView.findViewById(R.id.deleteBusAD);
-                       TextView editBus = dialogView.findViewById(R.id.editBusAD);
+
 
                        delete.setOnClickListener(new View.OnClickListener() {
                            @Override
@@ -173,12 +173,7 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
                            }
                        });
 
-                       editBus.setOnClickListener(new View.OnClickListener() {
-                           @Override
-                           public void onClick(View v) {
 
-                           }
-                       });
 
                    }
 

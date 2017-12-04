@@ -9,6 +9,7 @@
     tools:context="tanvir.busmanagementsystem.TicketCancel">
 
     <TextView
+        android:fontFamily="serif"
         android:textStyle="bold"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="120dp"
@@ -20,6 +21,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:fontFamily="serif"
         android:layout_marginLeft="5dp"
         android:textColor="#FFFFFF"
         android:layout_toRightOf="@id/adminTV"
@@ -40,15 +42,10 @@
         android:layout_height="wrap_content"
         >
 
-        <EditText
-            android:id="@+id/input_token"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ticken cancel token" />
-
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:fontFamily="serif"
         android:onClick="cancelTicket"
         android:id="@+id/loginBTN"
         tools:mockup_opacity="@android:integer/config_longAnimTime"
@@ -59,5 +56,13 @@
         android:layout_width="290dp"
         android:layout_below="@id/input_layout_username"
         android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/input_token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/loginBTN"
+        android:layout_alignStart="@+id/input_layout_username"
+        android:hint="Ticken cancel token" />
 
 </RelativeLayout>

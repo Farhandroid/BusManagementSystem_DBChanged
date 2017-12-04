@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:fontFamily="serif"
             android:layout_marginLeft="90dp"
             android:layout_marginTop="120dp"
             android:textColor="#FFFFFF"
@@ -23,6 +24,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:fontFamily="serif"
             android:layout_marginLeft="5dp"
             android:textColor="#FFFFFF"
             android:layout_toRightOf="@id/adminInSignUpPageTV"
@@ -127,6 +129,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
+            android:fontFamily="serif"
             android:id="@+id/signUpBTN"
             android:onClick="createAccount"
             tools:mockup_opacity="@android:integer/config_longAnimTime"

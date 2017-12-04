@@ -20,6 +20,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:fontFamily="serif"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="130dp"
@@ -30,6 +31,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="serif"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -99,6 +101,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="serif"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:text="Select Bus Seat :  "
@@ -106,6 +109,7 @@
                     android:textSize="20sp" />
 
                 <Spinner
+                    android:fontFamily="serif"
                     android:inputType="textCapSentences"
                     android:layout_marginLeft="20dp"
                     android:id="@+id/busSeatSP"
@@ -121,10 +125,11 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="11dp"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="serif"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:text="Select Bus Type : "
@@ -133,6 +138,7 @@
 
 
                 <Spinner
+                    android:fontFamily="serif"
                     android:inputType="textCapSentences"
                     android:id="@+id/busTypeSP"
                     android:layout_width="match_parent"
@@ -147,6 +153,7 @@
         </LinearLayout>
 
         <Button
+            android:fontFamily="serif"
             android:onClick="addBusInDB"
             android:background="@color/colorPrimaryDark"
             android:layout_marginTop="10dp"

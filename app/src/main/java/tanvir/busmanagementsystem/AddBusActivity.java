@@ -85,11 +85,20 @@ public class AddBusActivity extends AppCompatActivity implements AdapterView.OnI
         {
             ///Toast.makeText(this, "Your choose : bus Seat" ,Toast.LENGTH_SHORT).show();
 
-            totalBusSeat = busSeatArrayList.get(position);
+            if (position!=0)
+            {
+                totalBusSeat = busSeatArrayList.get(position);
+            }
+
+
         }
         if(spin2.getId() == R.id.busTypeSP)
         {
-            busType = busTypeArrayList.get(position);
+            if (position!=0)
+            {
+                busType = busTypeArrayList.get(position);
+            }
+
             ///Toast.makeText(this, "Your choose : busType " , Toast.LENGTH_SHORT).show();
         }
 

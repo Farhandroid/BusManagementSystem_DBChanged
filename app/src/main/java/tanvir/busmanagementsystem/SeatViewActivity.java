@@ -87,7 +87,7 @@ public class SeatViewActivity extends AppCompatActivity {
     }
     public void retriveDataFromSeatTable()
     {
-        Toast.makeText(this, "retriveDataFromSeatTable", Toast.LENGTH_SHORT).show();
+        ///Toast.makeText(this, "retriveDataFromSeatTable", Toast.LENGTH_SHORT).show();
         seatInfoMCS=new ArrayList<>();
         seatInfoMCS = databaseHelper.getSeatUsingScheduleId(scheduleId);
 

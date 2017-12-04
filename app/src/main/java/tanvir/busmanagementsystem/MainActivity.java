@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.drawerLayout)DrawerLayout drawerLayout;
     @BindView(R.id.navigationView)NavigationView navigationView;
     @BindView(R.id.toolbarlayoutinmainactivity)Toolbar toolbar;
-    @BindView(R.id.selectJourneyDateET)EditText selectJourneyDate;
-    @BindView(R.id.toLocationET)AutoCompleteTextView toLocation;
-    @BindView(R.id.fromLocationTV)AutoCompleteTextView fromLocation;
+    @BindView(R.id.selectJourneyDateET)EditText selectJourneyDateET;
+    @BindView(R.id.toLocationET)AutoCompleteTextView toLocationET;
+    @BindView(R.id.fromLocationTV)AutoCompleteTextView fromLocationET;
 
     DatabaseHelper databaseHelper;
 
@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countryNameArrayList);
-        toLocation.setAdapter(adapter);
-        fromLocation.setAdapter(adapter);
+        toLocationET.setAdapter(adapter);
+        fromLocationET.setAdapter(adapter);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                selectJourneyDate.setText(dayOfMonth + "/"
+                selectJourneyDateET.setText(dayOfMonth + "/"
                         + (month + 1) + "/" + year);
 
             }
@@ -143,19 +143,32 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, BustListAV.class);
 
-        if (fromLocation.getText().toString().length()>0 && toLocation.getText().toString().length()>0 && selectJourneyDate.getText().toString().length()>0)
+        String toLocation = toLocationET.getText().toString();
+        String fromLocation = fromLocationET.getText().toString();
+        String selectJourneyDate=selectJourneyDateET.getText().toString();
+
+        if (toLocation.length()>0 && fromLocation.length()>0&& selectJourneyDate.length()>0)
         {
-            SharedPreferences.Editor editor = getSharedPreferences("bus_data",MODE_PRIVATE).edit();
+            if (toLocation.equals(fromLocation))
+            {
+                TastyToast.makeText(getApplicationContext(), "You can't travel in same place ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+            }
+            else
+            {
+                SharedPreferences.Editor editor = getSharedPreferences("bus_data",MODE_PRIVATE).edit();
 
-            editor.putString("startFrom",fromLocation.getText().toString());
-            editor.putString("destination",toLocation.getText().toString());
-            editor.putString("departureDate",selectJourneyDate.getText().toString());
-            editor.apply();
+                editor.putString("startFrom",fromLocation);
+                editor.putString("destination",toLocation);
+                editor.putString("departureDate",selectJourneyDate);
+                editor.apply();
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            this.startActivity(intent);
-            overridePendingTransition(R.anim.left_in,R.anim.left_out);
-            finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                this.startActivity(intent);
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                finish();
+            }
+
+
         }
         else
         {

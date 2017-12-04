@@ -73,12 +73,48 @@
 
 
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:visibility="gone"
+            android:background="@color/activityBackgroundDark"
+            android:id="@+id/emptyLL"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_marginTop="110dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/sad"
+                android:layout_width="150dp"
+                android:layout_height="150dp" />
+
+            <TextView
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="Sorry , No trip Found"
+                android:layout_marginTop="15dp"
+                android:textSize="23sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
+
+
 
 </LinearLayout>
