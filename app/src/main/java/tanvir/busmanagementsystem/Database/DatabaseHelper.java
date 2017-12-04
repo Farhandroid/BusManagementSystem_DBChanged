@@ -5,14 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.design.widget.TabLayout;
 import android.widget.Toast;
-
-import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
 
-import tanvir.busmanagementsystem.BustListAV;
 import tanvir.busmanagementsystem.MOdelClass.BusINfoMC;
 import tanvir.busmanagementsystem.MOdelClass.BusScheduleInfoMC;
 import tanvir.busmanagementsystem.MOdelClass.SeatInfoMC;
@@ -79,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertDataInDatabase(String userName, String password, String email) {
+    public boolean insertSignUpDataInDatabase(String userName, String password, String email,String question , String secretAnswer) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -87,6 +83,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(TableAttribute.COL_USERNAME, userName);
         contentValues.put(TableAttribute.COL_Password, password);
         contentValues.put(TableAttribute.COL_EMAIL, email);
+        contentValues.put(TableAttribute.COL_QUESTION, question);
+        contentValues.put(TableAttribute.COL_SECRET_ANSWER, secretAnswer);
 
         long result = db.insert(TableAttribute.USER_TABLE, null, contentValues);
 
@@ -444,13 +442,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<String> getArrivalTimeFromcheduleTable(String busId , String busName,String departureDate)
+    public ArrayList<String> getArrivalTimeFromcheduleTable(String busId , String busName,String arrivalDate)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT "+ TableAttribute.COL_ARRIVAL_TIME + " FROM " + TableAttribute.BUS_SCHEDULE_TABLE+ " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? AND "+ TableAttribute.COL_DEPARTURE_DATE + " = ? ";
+        String query = "SELECT "+ TableAttribute.COL_ARRIVAL_TIME + " FROM " + TableAttribute.BUS_SCHEDULE_TABLE+ " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? AND "+ TableAttribute.COL_ARRIVAL_DATE + " = ? ";
 
-        Cursor cursor = db.rawQuery(query, new String[]{busId, busName,departureDate});
+        Cursor cursor = db.rawQuery(query, new String[]{busId, busName,arrivalDate});
         ArrayList<String> arrivalInfo = new ArrayList<>();
 
         if (cursor.getCount() > 0) {
@@ -461,6 +459,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return arrivalInfo;
     }
+
+    public String getPassword(String userName,String answer)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ////Toast.makeText(context, "userName db : "+userName+"\nanswer db : "+answer, Toast.LENGTH_SHORT).show();
+
+        String s ="";
+
+        String query = "SELECT " + TableAttribute.COL_Password +  " FROM " + TableAttribute.USER_TABLE+ " WHERE " + TableAttribute.COL_USERNAME + " = ?  AND " + TableAttribute.COL_SECRET_ANSWER + " = ? ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{userName, answer});
+
+        if (cursor.getCount()>0)
+        {
+            cursor.moveToFirst();
+
+            s = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_Password));
+
+        }
+        return s;
+    }
+
+    public String getQuestion(String userName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String s="";
+
+        String query = "SELECT " + TableAttribute.COL_QUESTION + " FROM " + TableAttribute.USER_TABLE + " WHERE "+ TableAttribute.COL_USERNAME + " = ? ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{userName});
+
+        if (cursor.getCount()>0)
+        {
+            cursor.moveToFirst();
+            s = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_QUESTION));
+
+        }
+        return s;
+
+    }
+
 
 
 }

@@ -91,19 +91,30 @@ public class BuyTicket extends AppCompatActivity {
         ArrayList<SeatInfoMC> seatInfoMCS = new ArrayList<>();
 
         if (customerName.length() > 0 && customerContactNo.length() > 0 && customerEmail.length() > 0) {
-            for (int i = 0; i < seatNumber.size(); i++) {
-                SeatInfoMC seatInfoMC = new SeatInfoMC(scheduleId, seatNumber.get(i), customerName, customerContactNo, customerEmail, randomNumber);
-                seatInfoMCS.add(seatInfoMC);
+
+             if (customerEmail.contains("@") && customerEmail.contains("."))
+            {
+                for (int i = 0; i < seatNumber.size(); i++) {
+                    SeatInfoMC seatInfoMC = new SeatInfoMC(scheduleId, seatNumber.get(i), customerName, customerContactNo, customerEmail, randomNumber);
+                    seatInfoMCS.add(seatInfoMC);
+                }
+
+
+                boolean b = databaseHelper.addSeatInDatabase(seatInfoMCS);
+
+                if (b) {
+                    TastyToast.makeText(getApplicationContext(), "Your ticket purchased successfully ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+                    startMainActivity();
+                } else
+                    TastyToast.makeText(getApplicationContext(), "Ticket Purchased Failed ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+
             }
+             else
+             {
+                 TastyToast.makeText(getApplicationContext(), "Please insert valid email .", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
+             }
 
-            boolean b = databaseHelper.addSeatInDatabase(seatInfoMCS);
-
-            if (b) {
-                TastyToast.makeText(getApplicationContext(), "Your ticket purchased successfully ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
-                startMainActivity();
-            } else
-                TastyToast.makeText(getApplicationContext(), "Ticket Purchased Failed ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
 
         } else {
             TastyToast.makeText(getApplicationContext(), "PLease fill up all field ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);

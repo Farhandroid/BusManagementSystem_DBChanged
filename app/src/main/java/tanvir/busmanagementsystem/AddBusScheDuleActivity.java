@@ -159,15 +159,14 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         String departureLocation = departureLocationET.getText().toString();
         String arrivalLocation = arrivalLocationET.getText().toString();
 
-        boolean res = getArrivalTime(busId,busName,departureTime,departureDate);
-
-
+        boolean res = getArrivalTime(busId,busName,departureTime,arrivalDate);
 
 
         if (busId.length() > 0 && busName.length() > 0 && departureDate.length() > 0 && departureTime.length() > 0 && arrivalDate.length() > 0 && arrivalTime.length() > 0 && departureLocation.length() > 0 && arrivalLocation.length() > 0) {
             if (new String(departureDate).equals(arrivalDate) && new String(departureTime).equals(arrivalTime))
 
                 TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : departure time and arrival time can't be same ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+
             else if (res==false)
             {
                 ///TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : This time slot is already used ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
@@ -326,9 +325,9 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         return result;
     }
 
-    public boolean getArrivalTime(String busId , String busName,String departureTime,String departureDate)
+    public boolean getArrivalTime(String busId , String busName,String departureTime,String arrivalDate)
     {
-        ArrayList<String> busArrivalTimeInfo = databaseHelper.getArrivalTimeFromcheduleTable(busId,busName,departureDate);
+        ArrayList<String> busArrivalTimeInfo = databaseHelper.getArrivalTimeFromcheduleTable(busId,busName,arrivalDate);
 
         ArrayList<Integer> busArrivalTimeInfoINt = new ArrayList<>();
 
@@ -366,7 +365,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
             {
                 if (arvl<=busArrivalTimeInfoINt.get(i))
                 {
-                    TastyToast.makeText(getApplicationContext(), "This bus have arrival time on "+departureDate+" at "+busArrivalTimeInfo.get(i)+"\n so bus can't be scheduled in this departure time : "+departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    TastyToast.makeText(getApplicationContext(), "This bus have arrival time on "+arrivalDate+" at "+busArrivalTimeInfo.get(i)+"\n so bus can't be scheduled in this departure time : "+departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     res=false;
                 }
 

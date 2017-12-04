@@ -13,6 +13,8 @@ public class TableAttribute {
     public static final String COL_USERNAME="UserName";
     public static final String COL_EMAIL="Email";
     public static final String COL_Password="Password";
+    public static final String COL_QUESTION="Question";
+    public static final String COL_SECRET_ANSWER="Answer";
 
 
     public static final String BUS_TABLE="BusInfo";
@@ -46,7 +48,7 @@ public class TableAttribute {
 
     public String userTableCreation()
     {
-        String query = "CREATE TABLE IF NOT EXISTS "+ USER_TABLE +"( "+ COL_USERNAME +" TEXT PRIMARY KEY , " +COL_Password + " TEXT, "+COL_EMAIL +" TEXT ) ";
+        String query = "CREATE TABLE IF NOT EXISTS "+ USER_TABLE +"( "+ COL_USERNAME +" TEXT PRIMARY KEY , " +COL_Password + " TEXT, "+COL_EMAIL + " TEXT, "+COL_QUESTION+ " TEXT, "+COL_SECRET_ANSWER + " TEXT ) ";
 
         return query;
     }

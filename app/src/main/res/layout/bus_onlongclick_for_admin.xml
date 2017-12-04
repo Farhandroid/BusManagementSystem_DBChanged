@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="What to do..."
+        android:text="Option..."
         android:textSize="20sp"
         android:padding="10dp"
         android:textColor="#FFFFFF"
@@ -30,21 +30,7 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
 
-    <TextView
-        android:clickable="true"
-        android:id="@+id/editBusAD"
-        android:layout_marginTop="5dp"
-        android:text="Edit Bus "
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <View
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
 
 
 

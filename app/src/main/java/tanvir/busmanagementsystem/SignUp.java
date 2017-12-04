@@ -19,6 +19,7 @@ public class SignUp extends AppCompatActivity {
     @BindView(R.id.userNameInSignUpActivity)EditText userNameET;
     @BindView(R.id.passwordInSignUP)EditText passwordET;
     @BindView(R.id.emailInSignUP)EditText emailET;
+    EditText questionET , secretAnswerET ;
 
     DatabaseHelper databaseHelper;
 
@@ -29,6 +30,9 @@ public class SignUp extends AppCompatActivity {
 
         ButterKnife.bind(this);
         databaseHelper = new DatabaseHelper(this);
+
+        questionET = (EditText) findViewById(R.id.questionInSignUP);
+        secretAnswerET= (EditText) findViewById(R.id.answerInSignUP);
     }
 
     public void startSignInPage(View view) {
@@ -58,30 +62,45 @@ public class SignUp extends AppCompatActivity {
 
         boolean result=false;
 
-        if (userNameET.getText().toString().length()>0 && passwordET.getText().toString().length()>0 && emailET.getText().toString().length()>0)
+        String userName = userNameET.getText().toString();
+        String password = passwordET.getText().toString();
+        String email = emailET.getText().toString();
+        String question = questionET.getText().toString();
+        String secretAnswer = questionET.getText().toString();
+
+        if (userName.length()>0 && password.length()>0 && email.length()>0 && question.length()>0 && secretAnswer.length()>0)
         {
-           result = databaseHelper.insertDataInDatabase(userNameET.getText().toString(),passwordET.getText().toString(),emailET.getText().toString());
-
-
-            if (result)
+            if (email.contains("@") && email.contains("."))
             {
-                TastyToast.makeText(getApplicationContext(), "Sign up success", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
-                userNameET.getText().clear();
-                passwordET.getText().clear();
-                emailET.getText().clear();
+                result = databaseHelper.insertSignUpDataInDatabase(userName,password,email,question,secretAnswer);
 
-                Intent myIntent = new Intent(SignUp.this, SignIn.class);
-                myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                SignUp.this.startActivity(myIntent);
-                overridePendingTransition(R.anim.right_in,R.anim.right_out);
-                finish();
 
+                if (result)
+                {
+                    TastyToast.makeText(getApplicationContext(), "Sign up success", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+                    userNameET.getText().clear();
+                    passwordET.getText().clear();
+                    emailET.getText().clear();
+
+                    Intent myIntent = new Intent(SignUp.this, SignIn.class);
+                    myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    SignUp.this.startActivity(myIntent);
+                    overridePendingTransition(R.anim.right_in,R.anim.right_out);
+                    finish();
+
+                }
+                else
+                {
+                    TastyToast.makeText(getApplicationContext(), "Sorry this username already taken .", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+
+                }
             }
             else
             {
-                TastyToast.makeText(getApplicationContext(), "Sorry this username already taken .", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                TastyToast.makeText(getApplicationContext(), "Please insert valid email .", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
             }
+
 
         }
         else

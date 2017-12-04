@@ -44,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     ActionBarDrawerToggle actionBarDrawerToggle;
-    FragmentTransaction fragmentTransaction;
 
-    private Menu appbar_menu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
