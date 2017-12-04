@@ -442,13 +442,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<String> getArrivalTimeFromcheduleTable(String busId , String busName,String departureDate) {
+    public ArrayList<BusScheduleInfoMC> getArrivalTimeFromcheduleTable(String busId , String busName,String departureDate) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + TableAttribute.COL_ARRIVAL_TIME + " FROM " + TableAttribute.BUS_SCHEDULE_TABLE + " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? AND " + TableAttribute.COL_ARRIVAL_DATE + " = ? ";
+        String query = "SELECT *  FROM " + TableAttribute.BUS_SCHEDULE_TABLE + " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? AND " + TableAttribute.COL_DEPARTURE_DATE + " = ? ";
 
         Cursor cursor = db.rawQuery(query, new String[]{busId, busName, departureDate});
-        ArrayList<String> arrivalInfo = new ArrayList<>();
+        ArrayList<BusScheduleInfoMC> scheduleInfoMCS = new ArrayList<>();
 
         if (cursor.getCount() > 0) {
 
@@ -456,9 +456,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()) {
 
-                    String arrival = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_ARRIVAL_TIME));
+                    String departuredate = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_DEPARTURE_DATE));
+                    String departureTime = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_DEPARTUR_TIME));
+                    String arrivalDate = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_ARRIVAL_DATE));
 
-                    arrivalInfo.add(arrival);
+                    String arrivalTime = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_ARRIVAL_TIME));
+
+                    BusScheduleInfoMC busScheduleInfoMC = new BusScheduleInfoMC(departuredate,departureTime,arrivalDate,arrivalTime);
+
+                    scheduleInfoMCS.add(busScheduleInfoMC);
 
 
                     cursor.moveToNext();
@@ -468,7 +474,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
 
         }
-        return arrivalInfo;
+        return scheduleInfoMCS;
     }
 
 

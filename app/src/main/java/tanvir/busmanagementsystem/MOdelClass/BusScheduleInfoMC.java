@@ -33,6 +33,13 @@ public class BusScheduleInfoMC {
         this.arrivaleTime = arrivaleTime;
     }
 
+    public BusScheduleInfoMC(String departureDate, String departureTime, String arrivalDate, String arrivaleTime) {
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.arrivalDate = arrivalDate;
+        this.arrivaleTime = arrivaleTime;
+    }
+
     public BusScheduleInfoMC(String busID, String busName, String departureLocation, String arrivalLocation, String departureDate, String departureTime, String arrivalDate, String arrivaleTime) {
 
         this.busName = busName;

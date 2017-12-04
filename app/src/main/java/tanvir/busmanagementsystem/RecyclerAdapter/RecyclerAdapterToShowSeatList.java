@@ -26,8 +26,7 @@ import tanvir.busmanagementsystem.R;
  * Created by USER on 01-Feb-17.
  */
 
-public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< RecyclerAdapterToShowSeatList.RecyclerViewHolder> {
-
+public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<RecyclerAdapterToShowSeatList.RecyclerViewHolder> {
 
 
     Context context;
@@ -39,15 +38,15 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
     ArrayList<SeatInfoMC> seatInfoMCS;
     Integer totalseat;
 
-    public RecyclerAdapterToShowSeatList(Context context, TextView counterText,Button buyTicket,int scheduleId,String busSeatPrice,ArrayList<SeatInfoMC> seatInfoMCS,Integer totalseat) {
+    public RecyclerAdapterToShowSeatList(Context context, TextView counterText, Button buyTicket, int scheduleId, String busSeatPrice, ArrayList<SeatInfoMC> seatInfoMCS, Integer totalseat) {
         this.context = context;
-        this.CounterTextView=counterText;
-        seatNumber=new ArrayList<>();
-        this.buyTicket=buyTicket;
-        this.scheduleId=scheduleId;
-        this.busSeatPrice=busSeatPrice;
-        this.seatInfoMCS=seatInfoMCS;
-        this.totalseat=totalseat;
+        this.CounterTextView = counterText;
+        seatNumber = new ArrayList<>();
+        this.buyTicket = buyTicket;
+        this.scheduleId = scheduleId;
+        this.busSeatPrice = busSeatPrice;
+        this.seatInfoMCS = seatInfoMCS;
+        this.totalseat = totalseat;
 
 
     }
@@ -57,7 +56,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.seatlist_recyclerview, parent, false);
 
-        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view, context,CounterTextView,buyTicket,seatInfoMCS);
+        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view, context, CounterTextView, buyTicket, seatInfoMCS);
         return recyclerViewHolder;
     }
 
@@ -120,7 +119,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
         ///else
         ///seatNumber.clear();
 
-        if (position==(totalseat-1))
+        if (position == (totalseat - 1))
             seatNumber.clear();
 
 
@@ -145,16 +144,16 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
         ArrayList<SeatInfoMC> seatInfoMCS;
 
 
-        public RecyclerViewHolder(final View view, final Context context, final TextView counterText,Button buyTicket,ArrayList<SeatInfoMC> seatInfoMCS) {
+        public RecyclerViewHolder(final View view, final Context context, final TextView counterText, Button buyTicket, ArrayList<SeatInfoMC> seatInfoMCS) {
             super(view);
             this.text = text;
-            this.counterText=counterText;
+            this.counterText = counterText;
 
             this.context = context;
 
-            this.buyTicket=buyTicket;
+            this.buyTicket = buyTicket;
 
-            this.seatInfoMCS=seatInfoMCS;
+            this.seatInfoMCS = seatInfoMCS;
 
             firstSeatEmpty = view.findViewById(R.id.firstSeatEmpty);
             secondSeatEmpty = view.findViewById(R.id.secondSeatEmpty);
@@ -181,8 +180,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     int position = getAdapterPosition();
 
                     String seat = returnSeatNumber(position, 1, context);
-                    if (seatNumber.size()<4)
-                    {
+                    if (seatNumber.size() < 4) {
                         seatNumber.add(seat);
                         CounterTextView.setText(getArrayListAsString());
                         ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
@@ -190,12 +188,9 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                         firstSeatEmpty.setVisibility(View.INVISIBLE);
                         firstSeatSelected.setVisibility(View.VISIBLE);
 
-                    }
-                    else
-                    {
+                    } else {
                         TastyToast.makeText(context, "You can't select more than four Seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
                     }
-
 
 
                 }
@@ -211,8 +206,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
                     String seat = returnSeatNumber(position, 2, context);
 
-                    if (seatNumber.size()<4)
-                    {
+                    if (seatNumber.size() < 4) {
                         seatNumber.add(seat);
                         CounterTextView.setText(getArrayListAsString());
                         ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
@@ -220,13 +214,9 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                         secondSeatEmpty.setVisibility(View.INVISIBLE);
                         secondSeatSelected.setVisibility(View.VISIBLE);
 
-                    }
-                    else
-                    {
+                    } else {
                         TastyToast.makeText(context, "You can't select more than four Seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
                     }
-
-
 
 
                 }
@@ -243,20 +233,16 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
                     String seat = returnSeatNumber(position, 3, context);
-                    if (seatNumber.size()<4)
-                    {
+                    if (seatNumber.size() < 4) {
                         seatNumber.add(seat);
                         CounterTextView.setText(getArrayListAsString());
 
                         thirdSeatEmpty.setVisibility(View.INVISIBLE);
                         thirdSeatSelected.setVisibility(View.VISIBLE);
 
-                    }
-                    else
-                    {
+                    } else {
                         TastyToast.makeText(context, "You can't select more than four Seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
                     }
-
 
 
                 }
@@ -273,20 +259,16 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                     ///Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
 
                     String seat = returnSeatNumber(position, 4, context);
-                    if (seatNumber.size()<4)
-                    {
+                    if (seatNumber.size() < 4) {
                         seatNumber.add(seat);
                         CounterTextView.setText(getArrayListAsString());
 
                         fourthSeatEmpty.setVisibility(View.INVISIBLE);
                         fourthSeatSelected.setVisibility(View.VISIBLE);
 
-                    }
-                    else
-                    {
+                    } else {
                         TastyToast.makeText(context, "You can't select more than four Seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
                     }
-
 
 
                 }
@@ -377,20 +359,65 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
                 }
             });
 
+            firstSeatBooked.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceType")
+                @Override
+                public void onClick(View v) {
+
+                    int position = getAdapterPosition();
+
+
+                }
+            });
+
+            secondSeatBooked.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceType")
+                @Override
+                public void onClick(View v) {
+
+                    int position = getAdapterPosition();
+
+
+
+
+                }
+            });
+
+            thirdSeatBooked.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceType")
+                @Override
+                public void onClick(View v) {
+
+                    int position = getAdapterPosition();
+
+
+                }
+            });
+
+            fourthSeatBooked.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceType")
+                @Override
+                public void onClick(View v) {
+
+                    int position = getAdapterPosition();
+
+
+                }
+            });
+
+
             buyTicket.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("ResourceType")
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, BuyTicket.class);
-                    intent.putExtra("scheduleId",scheduleId);
+                    intent.putExtra("scheduleId", scheduleId);
                     intent.putExtra("seatNumber", seatNumber);
                     intent.putExtra("seatPrice", busSeatPrice);
                     intent.putExtra("totalSeat", totalseat);
-                    if (seatNumber.size()>0)
-                    {
+                    if (seatNumber.size() > 0) {
                         context.startActivity(intent);
-                    }
-                    else
+                    } else
                         TastyToast.makeText(context, "You didn't select any seat ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
 
 
@@ -399,6 +426,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
 
 
         }
+
         public String getArrayListAsString() {
             String s = "";
 
@@ -422,7 +450,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter< Recycle
             String seat = c + Integer.toString(seatPOsition);
 
 
-           /// Toast.makeText(context, seat, Toast.LENGTH_SHORT).show();
+            /// Toast.makeText(context, seat, Toast.LENGTH_SHORT).show();
 
             return seat;
 
