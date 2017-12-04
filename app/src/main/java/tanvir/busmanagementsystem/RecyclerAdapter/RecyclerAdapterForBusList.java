@@ -111,9 +111,7 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
                    if (logged.contains("yes"))
                    {
-                       /*SharedPreferences.Editor editor2 = context.getSharedPreferences("fromAdmin?",MODE_PRIVATE).edit();
-                       editor2.putString("fromAdmin?","no");
-                       editor2.apply();*/
+
 
 
                        View dialogView;
@@ -122,7 +120,7 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
                        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 
-                       ///LayoutInflater inflater = context.getLayoutInflater();
+
                        dialogView = inflater.inflate(R.layout.bus_onlongclick_for_admin, null);
                        dialogBuilder.setView(dialogView);
                        alertDialog = dialogBuilder.create();
@@ -194,7 +192,6 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
             intent.putExtra("seatPrice",busINfoMCArrayList.get(position).getBusSeatPrice());
             intent.putExtra("totalSeat",busINfoMCArrayList.get(position).getTotalBusSeat());
 
-            //Toast.makeText(context, "seatPrice RV : "+busINfoMCArrayList.get(position).getBusSeatPrice(), Toast.LENGTH_SHORT).show();
 
             intent.putExtra("scheduleId",busScheduleInfoMCS.get(position).getBusScheduleInfoPK());
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

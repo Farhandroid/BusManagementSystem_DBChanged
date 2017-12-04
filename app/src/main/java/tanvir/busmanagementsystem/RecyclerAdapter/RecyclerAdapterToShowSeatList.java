@@ -67,11 +67,11 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        ///holder.firstSeatEmpty.setImageDrawable(context.getDrawable(text.get(position)));
+
 
         if (seatInfoMCS.size() > 0) {
 
-            /// Toast.makeText(context, "Enter OBVH", Toast.LENGTH_SHORT).show();
+
 
             for (int i = 0; i < seatInfoMCS.size(); i++) {
                 String seat = seatInfoMCS.get(i).getSeatNumber();
@@ -83,17 +83,13 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 if (row == position) {
 
                     char d = seat.charAt(1);
-                    int asciiValue1 = (int) c;
-                    ///int seatNum = (int) d;
+
+
 
                     int seatNum = Character.getNumericValue(d);
 
 
-                    /// Toast.makeText(context, "c = " + c + "\nd = " + d + "\nasci 1 = " + Integer.toString(asciiValue1) + "\nrow = " + Integer.toString(row
-                    /// ) + "\nseatnum = " + Integer.toString(seatNum), Toast.LENGTH_LONG).show();
 
-
-                    ///if (position == row) {
                     if (seatNum == 1) {
                         holder.firstSeatBooked.setVisibility(View.VISIBLE);
                         holder.firstSeatEmpty.setVisibility(View.INVISIBLE);
@@ -114,14 +110,13 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 }
 
 
-                /// }
+
 
             }
-            ///seatNumber.clear();
+
 
         }
-        ///else
-        ///seatNumber.clear();
+
 
         if (position == (totalseat - 1))
             seatNumber.clear();

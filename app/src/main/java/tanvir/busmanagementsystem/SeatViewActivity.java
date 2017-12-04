@@ -58,7 +58,6 @@ public class SeatViewActivity extends AppCompatActivity {
         int totalSeat  = Integer.parseInt(totalbusSeat);
         totalSeat=totalSeat/4;
 
-        ///Toast.makeText(this, "scheduleId : "+Integer.toString(scheduleId), Toast.LENGTH_SHORT).show();
 
 
         recyclerView = (RecyclerView) findViewById(R.id.seatViewRecyclerView);
@@ -87,14 +86,10 @@ public class SeatViewActivity extends AppCompatActivity {
     }
     public void retriveDataFromSeatTable()
     {
-        ///Toast.makeText(this, "retriveDataFromSeatTable", Toast.LENGTH_SHORT).show();
+
         seatInfoMCS=new ArrayList<>();
         seatInfoMCS = databaseHelper.getSeatUsingScheduleId(scheduleId);
 
-        /*if (seatInfoMCS.size()<0)
-            Toast.makeText(this, "seatInfoMCS not found bus seat actvt", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "seatInfoMCS found : "+Integer.toString(seatInfoMCS.size()), Toast.LENGTH_SHORT).show();*/
 
     }
 }

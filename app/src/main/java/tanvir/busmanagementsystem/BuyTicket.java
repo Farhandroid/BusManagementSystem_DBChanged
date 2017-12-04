@@ -50,12 +50,7 @@ public class BuyTicket extends AppCompatActivity {
         totalSeat = mIntent.getIntExtra("totalSeat", 0);
 
 
-        ///if (mIntent.hasExtra("seatPrice"))
         busSeatPrice = mIntent.getStringExtra("seatPrice");
-        ///else
-        ///Toast.makeText(this, "busSeatPrice not found", Toast.LENGTH_SHORT).show();
-
-        ///Toast.makeText(this, "price : "+busSeatPrice, Toast.LENGTH_SHORT).show();
 
         int price = Integer.parseInt(busSeatPrice);
         price = seatNumber.size() * price;
@@ -67,7 +62,7 @@ public class BuyTicket extends AppCompatActivity {
         ticketCancellTokenTV.setText(randomNumber);
 
 
-        ///Toast.makeText(this, "seat  number Size : "+Integer.toString(seatNumber.size()), Toast.LENGTH_SHORT).show();
+
     }
 
     public String getArrayListAsString() {
@@ -131,7 +126,6 @@ public class BuyTicket extends AppCompatActivity {
             TastyToast.makeText(getApplicationContext(), "PLease fill up all field ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
         }
 
-        ///Toast.makeText(this, "Seat Size : "+Integer.toString(), Toast.LENGTH_SHORT).show();
 
 
     }

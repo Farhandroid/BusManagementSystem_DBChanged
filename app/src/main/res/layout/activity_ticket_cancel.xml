@@ -45,6 +45,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:textColor="@color/white"
         android:fontFamily="serif"
         android:onClick="cancelTicket"
         android:id="@+id/loginBTN"
@@ -63,6 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/loginBTN"
         android:layout_alignStart="@+id/input_layout_username"
-        android:hint="Ticken cancel token" />
+        android:hint="Ticket cancel token" />
 
 </RelativeLayout>

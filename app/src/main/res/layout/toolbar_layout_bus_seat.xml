@@ -30,6 +30,7 @@
 
         <Button
             android:fontFamily="serif"
+
             android:id="@+id/buyTicket"
             android:layout_alignParentRight="true"
             android:layout_alignRight="@id/counterText"

@@ -83,12 +83,14 @@ public class AddBusActivity extends AppCompatActivity implements AdapterView.OnI
 
         if(spin.getId() == R.id.busSeatSP)
         {
-            ///Toast.makeText(this, "Your choose : bus Seat" ,Toast.LENGTH_SHORT).show();
+
 
             if (position!=0)
             {
                 totalBusSeat = busSeatArrayList.get(position);
             }
+            else
+                totalBusSeat="";
 
 
         }
@@ -98,8 +100,10 @@ public class AddBusActivity extends AppCompatActivity implements AdapterView.OnI
             {
                 busType = busTypeArrayList.get(position);
             }
+            else
+                busType="";
 
-            ///Toast.makeText(this, "Your choose : busType " , Toast.LENGTH_SHORT).show();
+
         }
 
     }
@@ -115,11 +119,10 @@ public class AddBusActivity extends AppCompatActivity implements AdapterView.OnI
         String busId = busIdET.getText().toString();
         String busSeatPrice = seatPriceET.getText().toString();
 
-        if (busName.length()>0 && busId.length()>0 && busSeatPrice.length()>0)
+        if (busName.length()>0 && busId.length()>0 && busSeatPrice.length()>0 && busType.length()>0 && totalBusSeat.length()>0)
         {
             BusINfoMC busINfoMC = new BusINfoMC(busName,busId,busType,totalBusSeat,busSeatPrice);
 
-            /// Toast.makeText(this, busName+"\n"+busId+"\n"+busType+"\n"+totalBusSeat+"\n"+busSeatPrice+"\n", Toast.LENGTH_LONG).show();
 
             Boolean aBoolean = databaseHelper.addBusInDatabase(busINfoMC);
 

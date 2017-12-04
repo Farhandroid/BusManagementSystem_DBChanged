@@ -83,7 +83,6 @@ public class SignIn extends AppCompatActivity {
         {
             boolean result=databaseHelper.checkLogin(userNameET.getText().toString(),passwordET.getText().toString());
 
-            ///Toast.makeText(this, userNameET.getText().toString()+"\n"+passwordET.getText().toString(), Toast.LENGTH_SHORT).show();
 
             if (result)
             {
@@ -193,7 +192,7 @@ public class SignIn extends AppCompatActivity {
 
         String password =databaseHelper.getPassword(userNameForgotPassword,answerForgotPassword);
 
-       /// Toast.makeText(this, "userName : "+userNameForgotPassword+"\nanswer"+answerForgotPassword, Toast.LENGTH_SHORT).show();
+
 
         if (password.length()>0)
         {
@@ -201,7 +200,6 @@ public class SignIn extends AppCompatActivity {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
             LayoutInflater inflater = this.getLayoutInflater();
             dialogView = inflater.inflate(R.layout.password_show, null);
-
 
             TextView passwoedView = dialogView.findViewById(R.id.showPassword);
 
@@ -212,14 +210,15 @@ public class SignIn extends AppCompatActivity {
             alertDialog = dialogBuilder.create();
             alertDialog.setCancelable(true);
             alertDialog.show();
-            ///Toast.makeText(this, "password "+password, Toast.LENGTH_SHORT).show();
+
+        }
+        else if (answerForgotPassword.length()>0)
+        {
+            TastyToast.makeText(getApplicationContext(), "Password not found ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+
         }
         else
-        {
-            Toast.makeText(this, "password not found ", Toast.LENGTH_SHORT).show();
-        }
-
-
+            TastyToast.makeText(getApplicationContext(), "PLease fill up all field ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
 
 
     }

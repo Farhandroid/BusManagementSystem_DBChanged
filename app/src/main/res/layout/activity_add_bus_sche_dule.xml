@@ -211,6 +211,7 @@
         </LinearLayout>
 
         <Button
+            android:textColor="@color/white"
             android:fontFamily="serif"
             android:layout_marginTop="10dp"
             android:text="Add"

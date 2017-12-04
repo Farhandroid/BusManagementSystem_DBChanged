@@ -97,43 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getAllData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("SELECT * FROM " + TableAttribute.USER_TABLE, null);
 
-
-        return result;
-    }
-
-
-    public boolean deleteAllData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-
-        int result = db.delete(TableAttribute.USER_TABLE, null, null);
-        db.close();
-
-        if (result > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    public boolean deleteNOteFromDatabase(String userName) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        int result = db.delete(TableAttribute.USER_TABLE, TableAttribute.COL_USERNAME + " = ?", new String[]{String.valueOf(userName)});
-        db.close();
-
-        if (result > 0) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
 
 
     public boolean checkLogin(String userName, String password) {
@@ -169,7 +133,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(TableAttribute.COL_TOTAL_BUS_SEAT, busINfoMC.getTotalBusSeat());
         contentValues.put(TableAttribute.COL_BUS_SEAT_PRICE, busINfoMC.getBusSeatPrice());
 
-        ///Toast.makeText(context,busINfoMC.getBusName()+"\n"+busINfoMC.getBusID()+"\n"+busINfoMC.getBusType()+"\n"+busINfoMC.getDepartureDate()+"\n"+busINfoMC.getDepartureTime()+"\n"+busINfoMC.getStartFrom()+"\n"+busINfoMC.getDestination()+"\n"+busINfoMC.getTotalBusSeat()+"\n"+busINfoMC.getBusSeatPrice(), Toast.LENGTH_LONG).show();
 
         long result = db.insert(TableAttribute.BUS_TABLE, null, contentValues);
 
@@ -183,45 +146,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    /*public ArrayList<BusINfoMC> getBusListFromBusTable(String startFrom, String destination, String date) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("SELECT * FROM " + TableAttribute.USER_TABLE, null);
 
-
-        Cursor cursor;
-
-        String selectString = "SELECT * FROM " + TableAttribute.BUS_TABLE + " WHERE " + TableAttribute.COL_START_FROM + " = ?  AND " + TableAttribute.COL_DESTINATION + " = ?" + " AND " + TableAttribute.COL_DEPARTURE_DATE + " = ?";
-
-        cursor = db.rawQuery(selectString, new String[]{startFrom, destination, date});
-
-        ArrayList<BusINfoMC> busINfoMCArrayList = new ArrayList<>();
-
-
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-
-                BusINfoMC busINfoMC = new BusINfoMC();
-
-                busINfoMC.setBusName(cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_NAME)));
-                busINfoMC.setBusType(cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_TYPE)));
-                busINfoMC.setDepartureTime(cursor.getString(cursor.getColumnIndex(TableAttribute.COL_DEPARTURE_TIME)));
-                busINfoMC.setBusSeatPrice(cursor.getString(cursor.getColumnIndex(TableAttribute.COL_BUS_SEAT_PRICE)));
-
-                busINfoMCArrayList.add(busINfoMC);
-
-                cursor.moveToNext();
-            }
-
-
-
-        }
-        return busINfoMCArrayList;
-    }*/
 
 
     public Cursor getBusNameId() {
-        ArrayList<BusINfoMC> busINfoMCArrayList = new ArrayList<>();
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT " + TableAttribute.COL_BUS_ID + " , " + TableAttribute.COL_BUS_NAME + " FROM " + TableAttribute.BUS_TABLE, null);
@@ -235,24 +163,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        ///Toast.makeText(context, "Database \n" + busScheduleInfoMC.getBusID() + "\n" + busScheduleInfoMC.getBusName() + "\n" + busScheduleInfoMC.getDepartureDate() + "\n" + busScheduleInfoMC.getDepartureTime() + "\n" + busScheduleInfoMC.getArrivalDate() + "\n" + busScheduleInfoMC.getArrivaleTime() + "\n", Toast.LENGTH_LONG).show();
 
         String selectString = "SELECT * FROM " + TableAttribute.BUS_TABLE + " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ?";
 
         Cursor cursor = db.rawQuery(selectString, new String[]{busScheduleInfoMC.getBusID(), busScheduleInfoMC.getBusName()});
 
-        ///long result = db.insert(TableAttribute.BUS_SCHEDULE_TABLE,null,contentValues);
-
         if (cursor.getCount() > 0) {
             String sql1 = "insert into " + TableAttribute.BUS_SCHEDULE_TABLE + " ( " + TableAttribute.COL_BUS_ID + " , " + TableAttribute.COL_BUS_NAME + " , " + TableAttribute.COL_DEPARTURE_LOCATION + " , " + TableAttribute.COL_ARRIVAL_LOCATION + " , " + TableAttribute.COL_DEPARTURE_DATE + " , " + TableAttribute.COL_DEPARTUR_TIME + " , " + TableAttribute.COL_ARRIVAL_DATE + " , " + TableAttribute.COL_ARRIVAL_TIME + " ) values( '" + busScheduleInfoMC.getBusID() + "' , '" + busScheduleInfoMC.getBusName() + "' , '" + busScheduleInfoMC.getDepartureLocation() + "' , '" + busScheduleInfoMC.getArrivalLocation() + "' , '" + busScheduleInfoMC.getDepartureDate() + "' , '" + busScheduleInfoMC.getDepartureTime() + "' , '" + busScheduleInfoMC.getArrivalDate() + "' , ' " + busScheduleInfoMC.getArrivaleTime() + "')";
-            ///try {
+
             db.execSQL(sql1);
 
-            //} catch (Exception e) {
-            // db.close();
+
             db.close();
             return true;
-            //}
 
 
         } else {
@@ -260,10 +183,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
 
-        ///String sql1 = "insert into " + TableAttribute.BUS_SCHEDULE_TABLE + " (" + TableAttribute.COL_BUS_ID + " , " + TableAttribute.COL_BUS_NAME + " , " + TableAttribute.COL_DEPARTURE_DATE + " , " + TableAttribute.COL_DEPARTUR_TIME + " , " + TableAttribute.COL_ARRIVAL_DATE + " , " + TableAttribute.COL_ARRIVAL_TIME + ") values(" + busScheduleInfoMC.getBusID() + ",'" + busScheduleInfoMC.getBusName() + ",'" + busScheduleInfoMC.getDepartureDate() + ",'" + busScheduleInfoMC.getDepartureTime() + ",'" + busScheduleInfoMC.getArrivalDate() + ",'" + busScheduleInfoMC.getArrivaleTime() + "')";
-
-
-        //return false;
 
     }
 
@@ -278,7 +197,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         if (cursor.getCount() > 0) {
-            ///Toast.makeText(context, "data found BusScheduleInfoMC DB", Toast.LENGTH_SHORT).show();
+
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
 
@@ -301,8 +220,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
 
-
-        //Toast.makeText(context, "DB : "+busScheduleInfoMCS.get(0).getBusID(), Toast.LENGTH_SHORT).show();
         return busScheduleInfoMCS;
 
 
@@ -331,7 +248,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         boolean res = true;
         for (int i = 0; i < seatInfoMCS.size(); i++) {
-           /// Toast.makeText(context, "Seat info size in db : " + Integer.toString(seatInfoMCS.size()), Toast.LENGTH_SHORT).show();
+
             String sql1 = "insert into " + TableAttribute.SEAT_TABLE + " ( " + TableAttribute.COL_SCHEDULE_ID + " , " + TableAttribute.COL_SEAT_NUMBER + " , " + TableAttribute.COL_CUSTOMER_NAME + " , " + TableAttribute.COL_CUSTOMER_MOBILE_NUMBER + " , " + TableAttribute.COL_CUSTOMER_EMAIL + " , " + TableAttribute.COL_SEAT_CANCELLABLE_TOKEN + " ) values( '" + seatInfoMCS.get(i).getSchedule_id() + "' , '" + seatInfoMCS.get(i).getSeatNumber() + "' , '" + seatInfoMCS.get(i).getCustomerName() + "' , '" + seatInfoMCS.get(i).getCustomerMobileNumber() + "' , '" + seatInfoMCS.get(i).getCustomerEmail() + "' , '" + seatInfoMCS.get(i).getSeatCancellableToken() + "')";
 
 
@@ -397,8 +314,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         boolean res = true;
-        ///int result = db.delete(TableAttribute.BUS_SCHEDULE_TABLE, TableAttribute.COL_SCHEDULE_ID, scheduleId);
-        ///db.close();
+
 
 
         String sql1 = "Delete from " + TableAttribute.BUS_SCHEDULE_TABLE  + " WHERE " + TableAttribute.COL_SCHEDULE_ID + " = "+scheduleId;
@@ -482,7 +398,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ////Toast.makeText(context, "userName db : "+userName+"\nanswer db : "+answer, Toast.LENGTH_SHORT).show();
 
         String s ="";
 

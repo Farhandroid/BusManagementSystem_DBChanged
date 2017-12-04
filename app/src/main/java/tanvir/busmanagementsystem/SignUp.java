@@ -66,12 +66,15 @@ public class SignUp extends AppCompatActivity {
         String password = passwordET.getText().toString();
         String email = emailET.getText().toString();
         String question = questionET.getText().toString();
-        String secretAnswer = questionET.getText().toString();
+        String secretAnswer = secretAnswerET.getText().toString();
 
         if (userName.length()>0 && password.length()>0 && email.length()>0 && question.length()>0 && secretAnswer.length()>0)
         {
-            if (email.contains("@") && email.contains("."))
+            if (email.contains("@") && email.contains(".com"))
+
+
             {
+
                 result = databaseHelper.insertSignUpDataInDatabase(userName,password,email,question,secretAnswer);
 
 
@@ -108,10 +111,6 @@ public class SignUp extends AppCompatActivity {
             TastyToast.makeText(getApplicationContext(), "PLease fill up all field .  .", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
         }
-
-
-
-        ///Toast.makeText(this, userNameET.getText().toString()+"\n"+passwordET.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
     }

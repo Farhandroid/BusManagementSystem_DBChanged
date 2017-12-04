@@ -113,7 +113,6 @@ public class AdminActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, BustListAV.class);
 
-        //Toast.makeText(this, "Select date : "+selectDate.getText().toString(), Toast.LENGTH_SHORT).show();
 
         if (fromLocationET.getText().toString().length()>0 && toLocationET.getText().toString().length()>0 && selectDate.getText().toString().length()>0 && selectDate.getText().toString().contains("/") )
         {
@@ -135,6 +134,17 @@ public class AdminActivity extends AppCompatActivity {
             TastyToast.makeText(getApplicationContext(), "PLease fill up all field ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
         }
 
+
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent myIntent = new Intent(this, MainActivity.class);
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        this.startActivity(myIntent);
+        overridePendingTransition(R.anim.right_in, R.anim.right_out);
+        finish();
 
     }
 }

@@ -70,6 +70,7 @@
 
     <Button
         android:fontFamily="serif"
+        android:textColor="@color/white"
         android:onClick="login"
         android:id="@+id/loginBTN"
         tools:mockup_opacity="@android:integer/config_longAnimTime"

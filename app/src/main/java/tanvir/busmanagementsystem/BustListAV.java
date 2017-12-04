@@ -65,15 +65,10 @@ public class BustListAV extends AppCompatActivity {
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.emptyLL);
 
-        ///Toast.makeText(this, " departureLocation : "+departureLocation+"\narrivalLocation"+arrivalLocation+"\ndepartureDate "+departureDate , Toast.LENGTH_SHORT).show();
 
-        //ArrayList<BusINfoMC> busINfoMCArrayList = databaseHelper.getBusListFromBusTable(startFrom, destination, departureDate);
         busINfoMCArrayList = new ArrayList<>();
         busScheduleInfoMCS = new ArrayList<>();
-        ///if (busINfoMCArrayList.size() > 0) {
-        ///Toast.makeText(this, "data found", Toast.LENGTH_SHORT).show();
 
-        ///new retriveDataFromDatabase().execute();
         retriveData();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
@@ -98,8 +93,6 @@ public class BustListAV extends AppCompatActivity {
 
 
 
-        //} else
-        ///TastyToast.makeText(getApplicationContext(), "Sorry , No trip founded ", TastyToast.LENGTH_SHORT, TastyToast.ERROR);
 
 
     }
@@ -125,47 +118,9 @@ public class BustListAV extends AppCompatActivity {
 
             busINfoMC = databaseHelper.getbuaTypeBusSeatSeatPriceFromDB(busId, busName);
 
-           ///Toast.makeText(this, "Loopd : "+busINfoMC.getBusType(), Toast.LENGTH_SHORT).show();
 
             busINfoMCArrayList.add(busINfoMC);
         }
 
-        /*if (busINfoMCArrayList.size() > 0)
-            Toast.makeText(this, " busINfoMCArrayList data found", Toast.LENGTH_SHORT).show();
-        if (busScheduleInfoMCS.size() > 0)
-            Toast.makeText(this, " busScheduleInfoMCS data found", Toast.LENGTH_SHORT).show();*/
-
-
-
-  /* private class retriveDataFromDatabase extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            busScheduleInfoMCS = databaseHelper.getDataFromBusScheduleForRV(departureLocation, arrivalLocation, departureDate);
-            for (int i = 0; i < busScheduleInfoMCS.size(); i++) {
-
-                BusINfoMC busINfoMC = new BusINfoMC();
-                String busId = busScheduleInfoMCS.get(i).getBusID();
-                String busName = busScheduleInfoMCS.get(i).getBusName();
-
-                busINfoMC = databaseHelper.getbuaTypeBusSeatSeatPriceFromDB(busId, busName);
-
-                busINfoMCArrayList.add(busINfoMC);
-
-
-            }
-
-
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-
-
-        }
-    }*/
     }
 }

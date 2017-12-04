@@ -160,11 +160,9 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         String departureLocation = departureLocationET.getText().toString();
         String arrivalLocation = arrivalLocationET.getText().toString();
 
-       // boolean res = getArrivalTime(busId, busName, departureTime, departureDate);
 
 
         if (busId.length() > 0 && busName.length() > 0 && departureDate.length() > 0 && departureTime.length() > 0 && arrivalDate.length() > 0 && arrivalTime.length() > 0 && departureLocation.length() > 0 && arrivalLocation.length() > 0) {
-           /// boolean res = getArrivalTime(busId, busName, departureTime, departureDate);
 
             if (departureLocation.equals(arrivalLocation)) {
                 TastyToast.makeText(getApplicationContext(), "Bus can't travel in same place ", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
@@ -176,7 +174,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
                     TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : departure time and arrival time can't be same ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
                 else if (getArrivalTime(busId, busName, departureTime, departureDate) == false) {
-                    ///TastyToast.makeText(getApplicationContext(), "Bus Can't be Scheduled\n Possible reason : This time slot is already used ", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+
                 } else {
                     boolean result = compareTime(departureTime, arrivalTime, departureDate, arrivalDate);
 
@@ -184,7 +182,6 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
                     if (result) {
                         BusScheduleInfoMC busScheduleInfoMC = new BusScheduleInfoMC(busId, busName, departureLocation, arrivalLocation, departureDate, departureTime, arrivalDate, arrivalTime);
 
-                        ///Toast.makeText(this, busName+"\n"+busId+"\n"+departureDate+"\n"+departureTime+"\n"+arrivalDate+"\n"+arrivalTime+"\n", Toast.LENGTH_LONG).show();
 
                         Boolean aBoolean = databaseHelper.addBusScheduleInDatabase(busScheduleInfoMC);
 
@@ -196,7 +193,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
 
 
                     } else {
-                        TastyToast.makeText(getApplicationContext(), "Arril time can't be lower than departure time", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                        TastyToast.makeText(getApplicationContext(), "Arrival time can't be lower than departure time", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
                     }
 
                 }
@@ -320,7 +317,6 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
         int departureDateInt = Integer.parseInt(departureDate);
         int departureTimeInt = Integer.parseInt(departureTime);
 
-        ///Toast.makeText(this, "departure date : "+Integer.toString(departureDateInt)+"\nArrival date : "+Integer.toString(arrivalDateInt), Toast.LENGTH_LONG).show();
 
         if (departureDateInt==arrivalDateInt && arrivalTimeInt<departureTimeInt)
             result=false;
@@ -328,40 +324,6 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
             result=false;
 
 
-        /*if (!departureDate.equals(arrivalDate))
-        {
-            return true;
-        }
-        else
-        {
-            String departureTimeHour, departureTimeMinut, arrivalTimeHour, arrivalTimeMinute;
-            String array1[] = departureTime.split(":");
-
-            departureTimeHour = array1[0];
-            departureTimeMinut = array1[1];
-
-            String array2[] = arrivalTime.split(":");
-
-            arrivalTimeHour = array2[0];
-            arrivalTimeMinute = array2[1];
-
-            ///Toast.makeText(this, "deHour : "+departureTimeHour+"\ndemnt :   "+departureTimeMinut+"\nArhour :   "+arrivalTimeHour+"\nARmnt :   "+arrivalTimeMinute, Toast.LENGTH_LONG).show();
-
-            int departureHourInt, departureMinuteInt, arrivalHourInt, arrivalMinuteInt;
-
-            departureHourInt = Integer.parseInt(departureTimeHour.trim());
-
-
-            ///Toast.makeText(this, "hour int : "+Integer.toString(departureHourInt), Toast.LENGTH_SHORT).show();
-            departureMinuteInt = Integer.parseInt(departureTimeMinut.trim());
-            arrivalHourInt = Integer.parseInt(arrivalTimeHour.trim());
-            arrivalMinuteInt = Integer.parseInt(arrivalTimeMinute.trim());
-
-            if (arrivalHourInt < departureHourInt)
-                result = false;
-            else if (new String(departureDate).equals(arrivalDate) && arrivalMinuteInt < departureMinuteInt)
-                result = false;
-        }*/
 
 
 
@@ -390,17 +352,10 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
                 busArrivalDate=busArrivalDate.replaceAll("/","");
                 busArrivalDate=busArrivalDate.replaceAll("\\s+", "");
 
-                //Log.d("myTag", "This is my message");
-
-
-
-
-                ///Toast.makeText(this, "busArrivalDate : "+busArrivalDate+"\nbusArrivalTime : "+busArrivalTime, Toast.LENGTH_LONG).show();
-
               busArrivalDateInfoINt.add(Integer.parseInt(busArrivalDate));
               busArrivalTimeInfoINt.add(Integer.parseInt(busArrivalTime));
 
-                ///Toast.makeText(this, "busArrivalDate : "+busArrivalDate+"\nbusArrivalTime : "+busArrivalTime, Toast.LENGTH_LONG).show();
+
             }
 
             String departureDateMOd,departureTimeMOd;
@@ -418,7 +373,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
             {
                 if (depardateInt<busArrivalDateInfoINt.get(i))
                 {
-                    TastyToast.makeText(getApplicationContext(), "This bus have arrival time on " + busScheduleInfoMCS.get(i).getArrivalDate() + " at " + busScheduleInfoMCS.get(i).getArrivaleTime() + "\n so bus can't be scheduled in this departure time : " + departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    TastyToast.makeText(getApplicationContext(), "This bus have arrival time on " + busScheduleInfoMCS.get(i).getArrivalDate() + " at " + busScheduleInfoMCS.get(i).getArrivaleTime() + "\n so bus can't be scheduled in this departure date : " + departureDate+" time : "+departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     return false;
                 }
                 else if (depardateInt ==busArrivalDateInfoINt.get(i) && deparTimeInt < busArrivalTimeInfoINt.get(i))
@@ -431,47 +386,8 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
 
 
         }
-        ///else
-            ///Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
 
 
-
-
-
-            /*for (int i = 0; i < busArrivalTimeInfo.size(); i++) {
-                String s = busArrivalTimeInfo.get(i).replace(":", "");
-                s = s.replaceAll("\\s+", "");
-
-                ///Toast.makeText(this, "time : "+busArrivalTimeInfo.get(i)+"\n", Toast.LENGTH_SHORT).show();
-
-                busArrivalTimeInfoINt.add(Integer.parseInt(s));
-
-                /// Toast.makeText(this, "val : "+Integer.toString(Integer.parseInt(s)), Toast.LENGTH_SHORT).show();
-            }
-        }
-        /*else
-        {
-            Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
-        }
-
-        if (busArrivalTimeInfo.size() > 0) {
-            String s = departureTime.replace(":", "");
-            s = s.replaceAll("\\s+", "");
-            int arvl = Integer.parseInt(s);
-
-            ///Toast.makeText(this, "arr : "+Integer.toString(arvl), Toast.LENGTH_SHORT).show();
-
-
-            for (int i = 0; i < busArrivalTimeInfoINt.size(); i++) {
-                if (arvl <= busArrivalTimeInfoINt.get(i)) {
-                    TastyToast.makeText(getApplicationContext(), "This bus have arrival time on " + departureDate + " at " + busArrivalTimeInfo.get(i) + "\n so bus can't be scheduled in this departure time : " + departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    return false;
-                }
-
-            }
-
-
-        }*/
         return res;
 
     }

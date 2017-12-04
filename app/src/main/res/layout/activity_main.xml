@@ -164,6 +164,8 @@
                 android:id="@+id/loginBTN"
                 tools:mockup_opacity="@android:integer/config_longAnimTime"
                 android:text="Search"
+                android:textColor="@color/white"
+                android:fontFamily="serif"
                 android:layout_marginTop="15dp"
                 android:background="@color/colorAccent"
                 android:layout_gravity="center"
