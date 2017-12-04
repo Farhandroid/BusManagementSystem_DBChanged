@@ -111,9 +111,9 @@ public class RecyclerAdapterForBusList extends RecyclerView.Adapter<RecyclerAdap
 
                    if (logged.contains("yes"))
                    {
-                       SharedPreferences.Editor editor2 = context.getSharedPreferences("fromAdmin?",MODE_PRIVATE).edit();
+                       /*SharedPreferences.Editor editor2 = context.getSharedPreferences("fromAdmin?",MODE_PRIVATE).edit();
                        editor2.putString("fromAdmin?","no");
-                       editor2.apply();
+                       editor2.apply();*/
 
 
                        View dialogView;

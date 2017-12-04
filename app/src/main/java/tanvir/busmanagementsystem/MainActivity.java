@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         String fromLocation = fromLocationET.getText().toString();
         String selectJourneyDate=selectJourneyDateET.getText().toString();
 
-        if (toLocation.length()>0 && fromLocation.length()>0&& selectJourneyDate.length()>0)
+        if (toLocation.length()>0 && fromLocation.length()>0&& selectJourneyDate.length()>0 && selectJourneyDate.contains("/"))
         {
             if (toLocation.equals(fromLocation))
             {

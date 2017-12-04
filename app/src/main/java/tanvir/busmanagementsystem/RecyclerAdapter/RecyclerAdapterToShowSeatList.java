@@ -3,6 +3,7 @@ package tanvir.busmanagementsystem.RecyclerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 import tanvir.busmanagementsystem.BuyTicket;
 import tanvir.busmanagementsystem.MOdelClass.SeatInfoMC;
 import tanvir.busmanagementsystem.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by USER on 01-Feb-17.
@@ -143,6 +146,8 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
         TextView counterText;
         Button buyTicket;
         ArrayList<SeatInfoMC> seatInfoMCS;
+        String logged;
+
 
 
         public RecyclerViewHolder(final View view, final Context context, final TextView counterText, Button buyTicket, final ArrayList<SeatInfoMC> seatInfoMCS) {
@@ -152,11 +157,13 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
 
             this.context = context;
 
+            SharedPreferences prefs2 = context.getSharedPreferences("loginInfo", MODE_PRIVATE);
+            logged = prefs2.getString("isLogged?", "");
+
+
             this.buyTicket = buyTicket;
 
             this.seatInfoMCS = seatInfoMCS;
-
-
 
 
             firstSeatEmpty = view.findViewById(R.id.firstSeatEmpty);
@@ -348,7 +355,6 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 public void onClick(View v) {
 
 
-
                     int position = getAdapterPosition();
 
                     String seat = returnSeatNumber(position, 4, context);
@@ -371,15 +377,15 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 public void onClick(View v) {
 
 
+                    if (logged.contains("yes")) {
+                        int position = getAdapterPosition();
 
-                    int position = getAdapterPosition();
+                        String seat = returnSeatNumber(position, 1, context);
 
-                    String seat = returnSeatNumber(position, 1, context);
+                        /// Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
 
-                   /// Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
-
-                    showUserInformation(seat);
-
+                        showUserInformation(seat);
+                    }
 
 
                 }
@@ -390,17 +396,17 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 @Override
                 public void onClick(View v) {
 
-                    int position = getAdapterPosition();
-                    ///Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
+                    if (logged.contains("yes")) {
+                        int position = getAdapterPosition();
+                        ///Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
 
-                    ///showUserInformation(position);
+                        ///showUserInformation(position);
 
-                    String seat = returnSeatNumber(position, 2, context);
-
-
-                    showUserInformation(seat);
+                        String seat = returnSeatNumber(position, 2, context);
 
 
+                        showUserInformation(seat);
+                    }
 
 
                 }
@@ -411,13 +417,15 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 @Override
                 public void onClick(View v) {
 
+                    if (logged.contains("yes")) {
+                        int position = getAdapterPosition();
 
-                    int position = getAdapterPosition();
-
-                    String seat = returnSeatNumber(position, 3, context);
+                        String seat = returnSeatNumber(position, 3, context);
 
 
-                    showUserInformation(seat);
+                        showUserInformation(seat);
+                    }
+
 
                     ///Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
 
@@ -432,12 +440,14 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 @Override
                 public void onClick(View v) {
 
+                    if (logged.contains("yes")) {
+                        int position = getAdapterPosition();
+                        String seat = returnSeatNumber(position, 4, context);
 
-                    int position = getAdapterPosition();
-                    String seat = returnSeatNumber(position, 4, context);
 
+                        showUserInformation(seat);
+                    }
 
-                    showUserInformation(seat);
 
                     //Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
 
@@ -498,14 +508,11 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
 
         }
 
-        public void showUserInformation(String seat)
-        {
+        public void showUserInformation(String seat) {
             ///Toast.makeText(context, "seat : "+seat, Toast.LENGTH_SHORT).show();
-            for (int i=0;i<seatInfoMCS.size();i++)
-            {
+            for (int i = 0; i < seatInfoMCS.size(); i++) {
                 ///Toast.makeText(context, "seat loop "+ seatInfoMCS.get(i).getSeatNumber(), Toast.LENGTH_SHORT).show();
-                if (seatInfoMCS.get(i).getSeatNumber().equals(seat))
-                {
+                if (seatInfoMCS.get(i).getSeatNumber().equals(seat)) {
                     final AlertDialog alertDialog;
 
                     final View userDetailsDialogView;
@@ -517,8 +524,8 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                     userDetailsDialogView = inflater.inflate(R.layout.user_info_for_admin_rv, null);
 
                     TextView userNameTV = userDetailsDialogView.findViewById(R.id.userNameTV);
-                    TextView contactNoTV=userDetailsDialogView.findViewById(R.id.userContactNOTV);
-                    TextView emailTV=userDetailsDialogView.findViewById(R.id.userEmailTV);
+                    TextView contactNoTV = userDetailsDialogView.findViewById(R.id.userContactNOTV);
+                    TextView emailTV = userDetailsDialogView.findViewById(R.id.userEmailTV);
 
                     userNameTV.setText(seatInfoMCS.get(i).getCustomerName());
                     contactNoTV.setText(seatInfoMCS.get(i).getCustomerMobileNumber());

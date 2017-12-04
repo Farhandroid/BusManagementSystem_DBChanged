@@ -92,21 +92,32 @@ public class BuyTicket extends AppCompatActivity {
 
         if (customerName.length() > 0 && customerContactNo.length() > 0 && customerEmail.length() > 0) {
 
-             if (customerEmail.contains("@") && customerEmail.contains("."))
+             if (customerEmail.contains("@") && customerEmail.contains(".com"))
             {
-                for (int i = 0; i < seatNumber.size(); i++) {
-                    SeatInfoMC seatInfoMC = new SeatInfoMC(scheduleId, seatNumber.get(i), customerName, customerContactNo, customerEmail, randomNumber);
-                    seatInfoMCS.add(seatInfoMC);
+                if (customerContactNo.length()==11 &&(customerContactNo.startsWith("017")|| customerContactNo.startsWith("018"))|| customerContactNo.startsWith("019") ||customerContactNo.startsWith("015")||customerContactNo.startsWith("016"))
+                {
+                    for (int i = 0; i < seatNumber.size(); i++) {
+                        SeatInfoMC seatInfoMC = new SeatInfoMC(scheduleId, seatNumber.get(i), customerName, customerContactNo, customerEmail, randomNumber);
+                        seatInfoMCS.add(seatInfoMC);
+                    }
+
+
+                    boolean b = databaseHelper.addSeatInDatabase(seatInfoMCS);
+
+                    if (b) {
+                        TastyToast.makeText(getApplicationContext(), "Your ticket purchased successfully ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+                        startMainActivity();
+                    } else
+                        TastyToast.makeText(getApplicationContext(), "Ticket Purchased Failed ", TastyToast.LENGTH_SHORT, TastyToast.ERROR);
+
+                }
+                else
+                {
+                    TastyToast.makeText(getApplicationContext(), "Please insert valid Mobile Number .", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+
                 }
 
 
-                boolean b = databaseHelper.addSeatInDatabase(seatInfoMCS);
-
-                if (b) {
-                    TastyToast.makeText(getApplicationContext(), "Your ticket purchased successfully ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
-                    startMainActivity();
-                } else
-                    TastyToast.makeText(getApplicationContext(), "Ticket Purchased Failed ", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
 
             }
              else

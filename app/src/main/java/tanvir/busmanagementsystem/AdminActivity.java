@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -112,7 +113,9 @@ public class AdminActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, BustListAV.class);
 
-        if (fromLocationET.getText().toString().length()>0 && toLocationET.getText().toString().length()>0 && selectDate.getText().toString().length()>0)
+        //Toast.makeText(this, "Select date : "+selectDate.getText().toString(), Toast.LENGTH_SHORT).show();
+
+        if (fromLocationET.getText().toString().length()>0 && toLocationET.getText().toString().length()>0 && selectDate.getText().toString().length()>0 && selectDate.getText().toString().contains("/") )
         {
             SharedPreferences.Editor editor = getSharedPreferences("bus_data",MODE_PRIVATE).edit();
 
