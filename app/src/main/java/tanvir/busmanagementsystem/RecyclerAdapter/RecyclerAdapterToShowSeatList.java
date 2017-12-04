@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -144,7 +145,7 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
         ArrayList<SeatInfoMC> seatInfoMCS;
 
 
-        public RecyclerViewHolder(final View view, final Context context, final TextView counterText, Button buyTicket, ArrayList<SeatInfoMC> seatInfoMCS) {
+        public RecyclerViewHolder(final View view, final Context context, final TextView counterText, Button buyTicket, final ArrayList<SeatInfoMC> seatInfoMCS) {
             super(view);
             this.text = text;
             this.counterText = counterText;
@@ -154,6 +155,9 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
             this.buyTicket = buyTicket;
 
             this.seatInfoMCS = seatInfoMCS;
+
+
+
 
             firstSeatEmpty = view.findViewById(R.id.firstSeatEmpty);
             secondSeatEmpty = view.findViewById(R.id.secondSeatEmpty);
@@ -343,6 +347,8 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 @Override
                 public void onClick(View v) {
 
+
+
                     int position = getAdapterPosition();
 
                     String seat = returnSeatNumber(position, 4, context);
@@ -364,7 +370,16 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 @Override
                 public void onClick(View v) {
 
+
+
                     int position = getAdapterPosition();
+
+                    String seat = returnSeatNumber(position, 1, context);
+
+                   /// Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+                    showUserInformation(seat);
+
 
 
                 }
@@ -376,6 +391,14 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 public void onClick(View v) {
 
                     int position = getAdapterPosition();
+                    ///Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+                    ///showUserInformation(position);
+
+                    String seat = returnSeatNumber(position, 2, context);
+
+
+                    showUserInformation(seat);
 
 
 
@@ -388,7 +411,17 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 @Override
                 public void onClick(View v) {
 
+
                     int position = getAdapterPosition();
+
+                    String seat = returnSeatNumber(position, 3, context);
+
+
+                    showUserInformation(seat);
+
+                    ///Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+                    ///showUserInformation(position);
 
 
                 }
@@ -399,7 +432,16 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
                 @Override
                 public void onClick(View v) {
 
+
                     int position = getAdapterPosition();
+                    String seat = returnSeatNumber(position, 4, context);
+
+
+                    showUserInformation(seat);
+
+                    //Toast.makeText(context, "Position : "+Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+                    ///showUserInformation(position);
 
 
                 }
@@ -453,6 +495,41 @@ public class RecyclerAdapterToShowSeatList extends RecyclerView.Adapter<Recycler
             /// Toast.makeText(context, seat, Toast.LENGTH_SHORT).show();
 
             return seat;
+
+        }
+
+        public void showUserInformation(String seat)
+        {
+            ///Toast.makeText(context, "seat : "+seat, Toast.LENGTH_SHORT).show();
+            for (int i=0;i<seatInfoMCS.size();i++)
+            {
+                ///Toast.makeText(context, "seat loop "+ seatInfoMCS.get(i).getSeatNumber(), Toast.LENGTH_SHORT).show();
+                if (seatInfoMCS.get(i).getSeatNumber().equals(seat))
+                {
+                    final AlertDialog alertDialog;
+
+                    final View userDetailsDialogView;
+
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                    userDetailsDialogView = inflater.inflate(R.layout.user_info_for_admin_rv, null);
+
+                    TextView userNameTV = userDetailsDialogView.findViewById(R.id.userNameTV);
+                    TextView contactNoTV=userDetailsDialogView.findViewById(R.id.userContactNOTV);
+                    TextView emailTV=userDetailsDialogView.findViewById(R.id.userEmailTV);
+
+                    userNameTV.setText(seatInfoMCS.get(i).getCustomerName());
+                    contactNoTV.setText(seatInfoMCS.get(i).getCustomerMobileNumber());
+                    emailTV.setText(seatInfoMCS.get(i).getCustomerEmail());
+
+                    dialogBuilder.setView(userDetailsDialogView);
+                    alertDialog = dialogBuilder.create();
+                    alertDialog.show();
+                    break;
+                }
+            }
 
         }
 
