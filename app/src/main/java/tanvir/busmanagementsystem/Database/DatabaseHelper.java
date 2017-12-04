@@ -442,23 +442,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<String> getArrivalTimeFromcheduleTable(String busId , String busName,String departureDate)
-    {
+    public ArrayList<String> getArrivalTimeFromcheduleTable(String busId , String busName,String departureDate) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT "+ TableAttribute.COL_ARRIVAL_TIME + " FROM " + TableAttribute.BUS_SCHEDULE_TABLE+ " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? AND "+ TableAttribute.COL_ARRIVAL_DATE + " = ? ";
+        String query = "SELECT " + TableAttribute.COL_ARRIVAL_TIME + " FROM " + TableAttribute.BUS_SCHEDULE_TABLE + " WHERE " + TableAttribute.COL_BUS_ID + " = ?  AND " + TableAttribute.COL_BUS_NAME + " = ? AND " + TableAttribute.COL_ARRIVAL_DATE + " = ? ";
 
-        Cursor cursor = db.rawQuery(query, new String[]{busId, busName,departureDate});
+        Cursor cursor = db.rawQuery(query, new String[]{busId, busName, departureDate});
         ArrayList<String> arrivalInfo = new ArrayList<>();
 
         if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            String arrival = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_ARRIVAL_TIME));
 
-            arrivalInfo.add(arrival);
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+
+                    String arrival = cursor.getString(cursor.getColumnIndex(TableAttribute.COL_ARRIVAL_TIME));
+
+                    arrivalInfo.add(arrival);
+
+
+                    cursor.moveToNext();
+                }
+
+
+            }
+
         }
         return arrivalInfo;
     }
+
 
     public String getPassword(String userName,String answer)
     {
@@ -491,6 +503,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT " + TableAttribute.COL_QUESTION + " FROM " + TableAttribute.USER_TABLE + " WHERE "+ TableAttribute.COL_USERNAME + " = ? ";
 
         Cursor cursor = db.rawQuery(query, new String[]{userName});
+
+
 
         if (cursor.getCount()>0)
         {

@@ -345,6 +345,8 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
                 String s = busArrivalTimeInfo.get(i).replace(":", "");
                 s = s.replaceAll("\\s+", "");
 
+                ///Toast.makeText(this, "time : "+busArrivalTimeInfo.get(i)+"\n", Toast.LENGTH_SHORT).show();
+
                 busArrivalTimeInfoINt.add(Integer.parseInt(s));
 
                 /// Toast.makeText(this, "val : "+Integer.toString(Integer.parseInt(s)), Toast.LENGTH_SHORT).show();
@@ -366,7 +368,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
             for (int i = 0; i < busArrivalTimeInfoINt.size(); i++) {
                 if (arvl <= busArrivalTimeInfoINt.get(i)) {
                     TastyToast.makeText(getApplicationContext(), "This bus have arrival time on " + departureDate + " at " + busArrivalTimeInfo.get(i) + "\n so bus can't be scheduled in this departure time : " + departureTime, TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    res = false;
+                    return false;
                 }
 
             }
