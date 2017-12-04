@@ -301,7 +301,34 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
 
         boolean result = true;
 
-        if (!departureDate.equals(arrivalDate))
+
+        departureTime=departureTime.replace(":","");
+        departureTime=departureTime.replaceAll("\\s+", "");
+
+        arrivalTime=arrivalTime.replace(":","");
+        arrivalTime=arrivalTime.replaceAll("\\s+", "");
+
+        departureDate=departureDate.replace("/","");
+        departureDate=departureDate.replaceAll("\\s+", "");
+
+        arrivalDate=arrivalDate.replace("/","");
+        arrivalDate=arrivalDate.replaceAll("\\s+", "");
+
+        int arrivalDateInt = Integer.parseInt(arrivalDate);
+        int arrivalTimeInt = Integer.parseInt(arrivalTime);
+
+        int departureDateInt = Integer.parseInt(departureDate);
+        int departureTimeInt = Integer.parseInt(departureTime);
+
+        ///Toast.makeText(this, "departure date : "+Integer.toString(departureDateInt)+"\nArrival date : "+Integer.toString(arrivalDateInt), Toast.LENGTH_LONG).show();
+
+        if (departureDateInt==arrivalDateInt && arrivalTimeInt<departureTimeInt)
+            result=false;
+        else if (arrivalDateInt<departureDateInt)
+            result=false;
+
+
+        /*if (!departureDate.equals(arrivalDate))
         {
             return true;
         }
@@ -334,7 +361,7 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
                 result = false;
             else if (new String(departureDate).equals(arrivalDate) && arrivalMinuteInt < departureMinuteInt)
                 result = false;
-        }
+        }*/
 
 
 
@@ -404,8 +431,8 @@ public class AddBusScheDuleActivity extends AppCompatActivity {
 
 
         }
-        else
-            Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
+        ///else
+            ///Toast.makeText(this, "Data not found", Toast.LENGTH_SHORT).show();
 
 
 
